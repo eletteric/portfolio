@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import "./App.css";
 
@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Work from "./components/Work";
 import About from "./components/About";
+
+import WorkContextProvider from "./contexts/WorkContext";
 
 
 const App = () => {
@@ -27,9 +29,11 @@ const App = () => {
         <Route
           path="/work"
           render={(props) => (
+            <WorkContextProvider>
             <Work
               {...props}
             />
+            </WorkContextProvider>
           )}
         />
 

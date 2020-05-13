@@ -1,14 +1,20 @@
-import React, {useState, useRef} from 'react';
+import React, { useContext, useState } from "react";
 
-const Work = (props) => {
+import { WorkContext } from "../contexts/WorkContext";
 
+const Work = () => {
+  const { works } = useContext(WorkContext);
+  return works.length ? (
+    <div>
+        <ul style={{margin:0, padding:0}}> 
+{ works.map(work => {
+return(
+<p key ={work.id} >{work.title}</p>
+)
+})}
+        </ul>
+    </div>
+  ) : (<p>No works to dislay</p>)
+};
 
-
-    return(
-      <div>
-          <h1>This is my work</h1>
-        </div>
-        )
-}
-
-export default Work
+export default Work;
