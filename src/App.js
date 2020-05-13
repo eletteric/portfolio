@@ -1,6 +1,8 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import "./App.css";
+
+
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -11,6 +13,9 @@ import WorkContextProvider from "./contexts/WorkContext";
 
 
 const App = () => {
+
+
+
   const location = useLocation();
 
   return (

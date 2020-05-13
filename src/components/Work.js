@@ -1,9 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { WorkContext } from "../contexts/WorkContext";
+import axios from 'axios';
 
 const Work = () => {
-  const { works } = useContext(WorkContext);
+
+  useEffect(()=>{
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then((res) => {
+        
+        console.log(res);
+    setWorks(res.data.slice(0,10))
+    })
+    
+      }, []);
+
+  const { works, addWork, setWorks } = useContext(WorkContext);
   return works.length ? (
     <div>
         <ul style={{margin:0, padding:0}}> 
@@ -14,7 +26,7 @@ return(
 })}
         </ul>
     </div>
-  ) : (<p>No works to dislay</p>)
+  ) : (<p>Loading work...</p>)
 };
 
 export default Work;
