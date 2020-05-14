@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Work from "./components/Work";
 import About from "./components/About";
+import NotFound from "./components/NotFound";
 
 import WorkContextProvider from "./contexts/WorkContext";
 
@@ -32,6 +33,7 @@ const App = () => {
           )}
         />
         <Route
+        exact
           path="/work"
           render={(props) => (
             <WorkContextProvider>
@@ -43,10 +45,17 @@ const App = () => {
         />
 
         <Route
+        exact
           path="/about"
           render={(props) => (
             <About
               {...props}
+            />
+          )}
+        />
+                <Route
+          render={() => (
+            <NotFound
             />
           )}
         />
