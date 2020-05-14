@@ -1,8 +1,6 @@
-import React, {useContext, useEffect} from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
 import "./App.css";
-
-
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -11,55 +9,42 @@ import About from "./components/About";
 import NotFound from "./components/NotFound";
 
 import WorkContextProvider from "./contexts/WorkContext";
-
+import { useTransition, animated } from "react-spring";
 
 const App = () => {
-
-
-
   const location = useLocation();
+  const transitions = useTransition(location, (location) => location.pathname, {
+    from: { opacity: 0, transform: 'translateX(100vw) scale(0.8,0.8)'},
+    enter: { opacity: 1, transform: 'translateX(0%) scale(1,1)'},
+    leave: { opacity: 0 , transform: 'translateX(-100vw) scale(0.8,0.8)'},
+  });
 
   return (
     <div className="App">
-        <Navbar />
-      <Switch location={location} key={location.pathname}>
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <Home
-              {...props}
+      <Navbar />
+      {transitions.map(({ item, props, key }) => (
+        <animated.div key={key} style={props}>
+          <Switch location={item} key={item.pathname}>
+            <Route exact path="/" render={(props) => <Home {...props} />} />
+            <Route
+              exact
+              path="/work"
+              render={(props) => (
+                <WorkContextProvider>
+                  <Work {...props} />
+                </WorkContextProvider>
+              )}
             />
-          )}
-        />
-        <Route
-        exact
-          path="/work"
-          render={(props) => (
-            <WorkContextProvider>
-            <Work
-              {...props}
-            />
-            </WorkContextProvider>
-          )}
-        />
 
-        <Route
-        exact
-          path="/about"
-          render={(props) => (
-            <About
-              {...props}
+            <Route
+              exact
+              path="/about"
+              render={(props) => <About {...props} />}
             />
-          )}
-        />
-                <Route
-          render={() => (
-            <NotFound
-            />
-          )}
-        />
-      </Switch>
+            <Route render={() => <NotFound />} />
+          </Switch>
+        </animated.div>
+      ))}
     </div>
   );
 };

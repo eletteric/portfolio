@@ -1,12 +1,11 @@
 import React from "react";
 import { useRef, useState, useEffect, useCallback } from "react";
-
 import { useTransition, animated } from "react-spring";
 
 const IntroText = (props) => {
   const ref = useRef([]);
-  const [items, set] = useState([]);
-  const transitions = useTransition(items, null, {
+  const [textitems, set] = useState([]);
+  const introTransitions = useTransition(textitems, null, {
     from: {
       opacity: 0,
       height: 0,
@@ -15,7 +14,7 @@ const IntroText = (props) => {
       color: "#0A0A0D",
     },
     enter: [
-      { opacity: 1, height: 80, innerHeight: 80 },
+      { opacity: 1, height: 60, innerHeight: 60 },
       { transform: "perspective(600px) rotateX(180deg)", color: "#343440" },
       { transform: "perspective(600px) rotateX(0deg)" },
     ],
@@ -27,7 +26,7 @@ const IntroText = (props) => {
     update: { color: "#343440" },
   });
 
-  const reset = useCallback(() => {
+  useEffect(() => {
     ref.current.map(clearTimeout);
     ref.current = [];
     set([]);
@@ -42,13 +41,14 @@ const IntroText = (props) => {
     ref.current.push(
       setTimeout(() => set(["Designer", "Creator", "Coder"]), 8500)
     );
+
+return()=>ref.current.map(clearTimeout);
+
   }, []);
 
-  useEffect(() => void reset(), []);
-
   return (
-    <div style={{ marginTop: "20vh" }}>
-      {transitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
+    <div style={{ marginTop: "30vh"}}>
+      {introTransitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
         <animated.div className="transitions-item" key={key} style={rest}>
           <animated.div style={{ overflow: "hidden", height: innerHeight }}>
             {item}

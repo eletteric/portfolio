@@ -97,7 +97,7 @@ const Canvas = () => {
     return () => {
       cancelAnimationFrame(requestId);
     };
-  });
+  },[]);
 
   return <canvas ref={ref} />;
 };

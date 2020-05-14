@@ -37,36 +37,82 @@
   }
 }
 
-
 /* added */
 
-canvas {position: absolute; z-index: -1000; overflow: visible; background:#fff; display: block; top: 0 ; left:0}
 body {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
-    segoe ui, arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   background: transparent;
- /* -webkit-touch-callout: none;
+  /* -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: default;*/
+  overflow-x: hidden;
 }
+
+
+.MuiListItem-root a {
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1em;
+  text-decoration: none;
+  color: black;
+  padding-top:20px;padding-bottom:20px
+}
+.MuiListItem-root a.activeItem {
+  text-decoration: underline;
+  color: black;
+}
+
+.absoluteWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow:hidden;
+}
+
+.navWrapper {
+  position: fixed;
+  top: 10px;
+  left: 0px;
+  height: 60px;
+  width: 100%;
+  z-index: 1;
+}
+
+canvas {
+  position: absolute;
+  z-index:0;
+  background: #fff;
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+
 
 .transitions-item {
   overflow: hidden;
   width: 100%;
-  color: white;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5em;
-  font-weight: 800;
+  font-size: 4em;
+  font-weight: 600;
   text-transform: uppercase;
   will-change: transform, opacity, height;
   white-space: nowrap;
   cursor: pointer;
-  line-height: 80px;
+  line-height: 60px;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
+  segoe ui, arial, sans-serif;
+z-index:1
 }
-.MuiListItem-root a { text-align: center; width:100%; text-transform: uppercase; font-weight: 600; font-size: 1em; text-decoration: none; color: black}

@@ -5,8 +5,8 @@ import Portrait from "../img/mn.jpg";
 
 const About = (props) => {
   return (
-    <div>
-
+    <div className="absoluteWrapper">
+<h1 style={{paddingTop: '90px'}}>More about me</h1>
     </div>
   );
 };
