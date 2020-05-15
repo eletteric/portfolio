@@ -41,7 +41,7 @@ const App = () => {
               path="/about"
               render={(props) => <About {...props} />}
             />
-            <Route render={() => <NotFound />} />
+            <Route render={(props) => <NotFound {...props} />} />
           </Switch>
         </animated.div>
       ))}

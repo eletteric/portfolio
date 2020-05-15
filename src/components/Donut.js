@@ -1,27 +1,26 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
-const Home = (props) => {
+const Donut = (props) => {
+  const setStrokeDashArrayInPercent = (strokeDashArray) => {
+    const negativePercent = strokeDashArray - 100;
+    const DashArrayInPercent = (Math.abs(negativePercent) / 100) * 156;
 
-    const setStrokeDashArrayInPercent = (strokeDashArray) => {
+    return DashArrayInPercent;
+  };
 
-        const negativePercent= strokeDashArray-100;
-        const DashArrayInPercent = ( Math.abs(negativePercent) / 100) * 156;
-
-        return DashArrayInPercent;
-      };
+  const percent = props.intValue;
 
   const propsStroke = useSpring({
-    value: setStrokeDashArrayInPercent(95),
+    value: setStrokeDashArrayInPercent(percent),
     from: { value: 156 },
     config: { duration: 2000 },
   });
   const propsNumber = useSpring({
-    number: 100,
+    number: Math.abs(percent),
     from: { number: 0 },
     config: { duration: 2000 },
   });
-
 
   return (
     <div>
@@ -34,21 +33,42 @@ const Home = (props) => {
           margin: "0px auto",
           display: "flex",
           alignItems: "center",
+          fontSize: "1.2em",
+
           justifyContent: "center",
         }}
       >
         {propsNumber.number.interpolate((val) => Math.floor(val))}
       </animated.span>
+      <span
+        className="percentage"
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100px",
+          textAlign: "center",
+          margin: "0px auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <p
+          style={{ paddingLeft: "35px", lineHeight: "20px", fontSize: "0.8em" }}
+        >
+          %
+        </p>
+      </span>
       <animated.svg
         style={{ width: "100px", height: "100px" }}
-        viewBox="0 0 51 51"
-        strokeWidth="2.5"
+        viewBox="-5 -5 60 60"
+        strokeWidth="4.5"
         fill="white"
-        stroke="rgb(45, 55, 71)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke="rgb(255, 0, 255)"
+        strokeLinecap="square"
+        strokeLinejoin="square"
         strokeDasharray="156"
-        strokeDashoffset={propsStroke.value?propsStroke.value:156}
+        strokeDashoffset={propsStroke.value ? propsStroke.value : 156}
       >
         <circle
           transform="translate(25.500000, 25.500000) rotate(-270.000000) translate(-25.500000, -25.500000)"
@@ -61,4 +81,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default Donut;
