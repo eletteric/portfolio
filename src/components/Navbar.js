@@ -67,7 +67,6 @@ const Navbar = (props) => {
     <div className="navWrapper">
       <IconButton
         onClick={toggleDrawer(true)}
-        edge="start"
         color="inherit"
         aria-label="menu"
         size="medium"

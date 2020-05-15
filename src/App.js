@@ -7,11 +7,18 @@ import Home from "./components/Home";
 import Work from "./components/Work";
 import About from "./components/About";
 import NotFound from "./components/NotFound";
+import Admin from "./components/Admin";
 
 import WorkContextProvider from "./contexts/WorkContext";
+import UserContextProvider from "./contexts/UserContext";
 import { useTransition, animated } from "react-spring";
 
+
+
 const App = () => {
+
+
+
   const location = useLocation();
   const transitions = useTransition(location, (location) => location.pathname, {
     from: { opacity: 0, transform: 'translateX(100vw) scale(0.8,0.8)'},
@@ -24,6 +31,7 @@ const App = () => {
       <Navbar />
       {transitions.map(({ item, props, key }) => (
         <animated.div key={key} style={props}>
+          <UserContextProvider>
           <Switch location={item} key={item.pathname}>
             <Route exact path="/" render={(props) => <Home {...props} />} />
             <Route
@@ -41,8 +49,14 @@ const App = () => {
               path="/about"
               render={(props) => <About {...props} />}
             />
+            <Route
+                          exact
+              path="/admin"
+              render={(props) => <Admin {...props} />}
+            />
             <Route render={(props) => <NotFound {...props} />} />
           </Switch>
+          </UserContextProvider>
         </animated.div>
       ))}
     </div>
