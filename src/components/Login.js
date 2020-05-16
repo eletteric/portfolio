@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = (props) => {
   const classes = useStyles();
+
   const {
     email,
     setEmail,
@@ -57,6 +58,8 @@ const Login = (props) => {
     setLoggedIn,
   } = useContext(UserContext);
 
+
+
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -64,10 +67,7 @@ const Login = (props) => {
     setPassword(e.target.value);
   };
 
-  const logout = () => {
-    firebase.auth().signOut();
-    setLoggedIn(false);
-  };
+
 
   const login = (e) => {
     e.preventDefault();
@@ -76,6 +76,7 @@ const Login = (props) => {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         setLoggedIn(true);
+         localStorage.setItem('Logged in', true);
       })
       .catch((err) => {
         console.log(err);
@@ -102,6 +103,7 @@ const Login = (props) => {
             label="Email Address"
             name="email"
             autoComplete="email"
+            size="small"
             autoFocus
             onChange={handleChangeEmail}
           />
@@ -114,6 +116,7 @@ const Login = (props) => {
             label="Password"
             type="password"
             id="password"
+            size="small"
             autoComplete="current-password"
             onChange={handleChangePassword}
           />
@@ -125,14 +128,6 @@ const Login = (props) => {
             onClick={login}
           >
             Log In
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            onClick={logout}
-          >
-            Log Out
           </Button>
         </form>
       </div>

@@ -17,8 +17,6 @@ import { useTransition, animated } from "react-spring";
 
 const App = () => {
 
-
-
   const location = useLocation();
   const transitions = useTransition(location, (location) => location.pathname, {
     from: { opacity: 0, transform: 'translateX(100vw) scale(0.8,0.8)'},
