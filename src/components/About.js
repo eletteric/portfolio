@@ -33,7 +33,7 @@ skills:{
     score:75
   },
   coding:{
-    score:75
+    score:100
   },
   other:{
     score:50
@@ -43,9 +43,9 @@ skills:{
 
 
   return (
-    <div className="absoluteWrapper">
-<h1 style={{paddingTop: '90px'}}>{myself.name.first} {myself.name.last}</h1>
-<Portrait intValue={myself.skills.other.score} designValue={myself.skills.design.score} portraitUrl={myself.image.url} title="concept"/>
+    <div className="absoluteWrapper"  style={{marginTop: '140px'}}>
+<Portrait intValue={myself.skills.other.score} designValue={myself.skills.design.score} codingValue={myself.skills.coding.score} portraitUrl={myself.image.url} title="concept"/>
+{/*<h3 style={{paddingTop: '0px'}}>{myself.name.first} {myself.name.last}</h3>*/}
 
 {/*<Avatar alt={myself.image.alt} src={myself.image.url} className={classes.big} style={{margin:'0px auto'}}/>
 <Donut intValue={myself.skills.coding.score}  title="coding" />*/}

@@ -19,9 +19,9 @@ const App = () => {
 
   const location = useLocation();
   const transitions = useTransition(location, (location) => location.pathname, {
-    from: { opacity: 0, transform: 'translateX(100vw) scale(0.8,0.8)'},
-    enter: { opacity: 1, transform: 'translateX(0%) scale(1,1)'},
-    leave: { opacity: 0 , transform: 'translateX(-100vw) scale(0.8,0.8)'},
+    from: { opacity: 0, transform: 'translateX(100vw)'},
+    enter: { opacity: 1, transform: 'translateX(0%)'},
+    leave: { opacity: 0 , transform: 'translateX(-100vw)'},
   });
 
   return (

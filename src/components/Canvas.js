@@ -36,13 +36,14 @@ const Canvas = () => {
 
     let canvas = ref.current;
     let context = canvas.getContext("2d");
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    let colorArray = ['#FF00FF', '#00FFFF', '#868789'];
+
     let requestId;
 
-    function Circle(x, y, dx, dy, radius) {
+    function Circle(x, y, dx, dy, radius, randomColor) {
       this.x = x;
       this.y = y;
       this.dx = dx;
@@ -51,7 +52,7 @@ const Canvas = () => {
       this.draw = () => {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.fillStyle = "grey";
+        context.fillStyle = randomColor;
         context.fill();
 
       };
@@ -78,8 +79,9 @@ const Canvas = () => {
       var dx = (Math.random() - 0.5) * 2;
       var dy = (Math.random() - 0.5) * 2;
       var radius = Math.random() * 5 + 1;
+      var randomColor = colorArray[Math.floor(Math.random()*colorArray.length)];
 
-      circleArray.push(new Circle(x, y, dx, dy, radius));
+      circleArray.push(new Circle(x, y, dx, dy, radius, randomColor));
     }
 
     const render = () => {
