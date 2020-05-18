@@ -9,22 +9,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import UserContextProvider from "../contexts/UserContext";
 
 import { UserContext } from "../contexts/UserContext";
 import firebase from "../services/firebase";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,10 +32,13 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor:'#FF00FF'
   },
 }));
 
 const Login = (props) => {
+
+
   const classes = useStyles();
 
   const {
@@ -54,8 +46,8 @@ const Login = (props) => {
     setEmail,
     password,
     setPassword,
-    loggedIn,
     setLoggedIn,
+    
   } = useContext(UserContext);
 
 
@@ -69,7 +61,7 @@ const Login = (props) => {
 
 
 
-  const login = (e) => {
+  const signIn = (e) => {
     e.preventDefault();
     firebase
       .auth()
@@ -125,15 +117,12 @@ const Login = (props) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={login}
+            onClick={signIn}
           >
             Log In
           </Button>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };

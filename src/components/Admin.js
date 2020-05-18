@@ -2,22 +2,42 @@ import React, { useContext, useEffect } from "react";
 import { db, auth } from "../services/firebase";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { UserContext } from "../contexts/UserContext";
 import firebase from "../services/firebase";
 import Login from "./Login";
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import ImageUpload from "./ImageUpload";
+
 const Admin = (props) => {
   
-  const { user, setUser, loggedIn, setLoggedIn } = useContext(UserContext);
+  const { user, setUser, loggedIn, setLoggedIn, myself, setMyself} = useContext(UserContext);
+
+  const myState = Object.assign([], myself);
+
+
+const onChangeFirstName = (e) =>{
+  myState[0].name.first = e.target.value;
+  setMyself(myState);
+  }
+const onChangeLastName = (e) =>{
+  myState[0].name.last = e.target.value;
+  setMyself(myState);
+  }
+
 
   useEffect(() => {
     authListener();
   }, []);
 
-
-
+  useEffect(() => {
+    const localMemory = localStorage.getItem('Logged in');
+    if(localMemory =='true'){
+     setLoggedIn(true);
+    }else setLoggedIn(false);
+         }, []);
+         
   const authListener = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -26,12 +46,6 @@ const Admin = (props) => {
         setUser(null);
       }
     });
-  };
-
-  const logout = () => {
-    firebase.auth().signOut();
-    setLoggedIn(false);
-    localStorage.setItem('Logged in', false);
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -56,27 +70,11 @@ const Admin = (props) => {
 
   const classes = useStyles();
 
-
-  useEffect(() => {
-const localMemory = localStorage.getItem('Logged in');
-if(localMemory =='true'){
- setLoggedIn(true);
-}else setLoggedIn(false);
-     }, []);
-
   return (
     <div className="absoluteWrapper">
       {loggedIn ? (
         <Container>
         <h1 style={{ marginTop: "100px" }}>Admin Page</h1>
-        <Button
-        variant="contained"
-        color="secondary"
-        className={classes.submit}
-        onClick={logout}
-      >
-        Log Out
-      </Button>
       </Container>
       ) : (
         <Login />
@@ -84,24 +82,33 @@ if(localMemory =='true'){
 
       {loggedIn ? (
             <Container component="main" maxWidth="xs">
-                      <h2 style={{ marginTop: "10px" }}>Add a new article</h2>
+                      <Typography variant="overline">Profile picture</Typography>
                 <form className={classes.form} noValidate>
+                <ImageUpload/>
 <TextField
-        variant="outlined"
+        required
+        fullWidth
+        id="firstname"
+        label="First name"
+        name="first"
+        autoComplete="First name"
+        size="small"
+        value={myself[0].name.first}
+        onChange={onChangeFirstName}
+      />
+<TextField
         required
         fullWidth
         id="title"
-        label="Title"
+        label="Last name"
         name="title"
         autoComplete="title"
         size="small"
+value={myself[0].name.last}
+onChange={onChangeLastName}
       />
       <br/>
       <br/>
-          <Button variant="contained" component="label">
-            Choose image
-            <input type="file" style={{ display: "none" }} />
-          </Button>
           <br />
           </form>
           </Container>

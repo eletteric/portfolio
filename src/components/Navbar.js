@@ -71,7 +71,7 @@ const Navbar = (props) => {
         aria-label="menu"
         size="medium"
       >
-        <MenuIcon style={{ fontSize: "3em" }} />
+        <MenuIcon style={{ fontSize: "2em" }} />
       </IconButton>
       <SwipeableDrawer
         anchor="top"

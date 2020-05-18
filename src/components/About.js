@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 import Donut from "./Donut";
 import Portrait from "./Portrait";
+import {db, auth} from "../services/firebase";
+import { UserContext } from "../contexts/UserContext";
 
 import Photo from "../img/mn.jpg";
 
@@ -16,35 +18,15 @@ big:{
 
 
 const About = (props) => {
+ 
 
+
+  
 const classes = useStyles();
 
-const [myself, setMyself] = useState({
-  image:{
-    url:'http://www.eletteric.com/portfolio/mn.jpg',
-    alt: 'digital creative'
-  },
-name:{
-  first:'Mihai',
-  last:'Niculescu'
-},
-skills:{
-  design:{
-    score:75
-  },
-  coding:{
-    score:100
-  },
-  other:{
-    score:50
-  }
-}
-});
-
-
   return (
-    <div className="absoluteWrapper"  style={{marginTop: '140px'}}>
-<Portrait intValue={myself.skills.other.score} designValue={myself.skills.design.score} codingValue={myself.skills.coding.score} portraitUrl={myself.image.url} title="concept"/>
+    <div className="absoluteWrapper">
+<Portrait title="concept"/>
 {/*<h3 style={{paddingTop: '0px'}}>{myself.name.first} {myself.name.last}</h3>*/}
 
 {/*<Avatar alt={myself.image.alt} src={myself.image.url} className={classes.big} style={{margin:'0px auto'}}/>
