@@ -5,8 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { UserContext } from "../contexts/UserContext";
 import firebase from "../services/firebase";
 import Login from "./Login";
+import SkillSliders from "./SkillSliders";
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ImageUpload from "./ImageUpload";
 
@@ -81,13 +83,12 @@ const onChangeLastName = (e) =>{
       )}
 
       {loggedIn ? (
-            <Container component="main" maxWidth="xs">
-                      <Typography variant="overline">Profile picture</Typography>
-                <form className={classes.form} noValidate>
-                <ImageUpload/>
+            <Container component="main" maxWidth="md">
+                <form className={classes.form} /*onSubmit={submitProfile}*/ >
+                <Grid container spacing={3}>
+                  <Grid item sm={3} xs={6}>
 <TextField
         required
-        fullWidth
         id="firstname"
         label="First name"
         name="first"
@@ -98,7 +99,6 @@ const onChangeLastName = (e) =>{
       />
 <TextField
         required
-        fullWidth
         id="title"
         label="Last name"
         name="title"
@@ -107,12 +107,22 @@ const onChangeLastName = (e) =>{
 value={myself[0].name.last}
 onChange={onChangeLastName}
       />
-      <br/>
-      <br/>
-          <br />
+      </Grid>
+      <Grid item sm={3} xs={6}>
+      <ImageUpload/>
+</Grid>
+<Grid item sm={6} xs={12}>
+<Typography variant="overline">3 best skills</Typography>
+<SkillSliders/>
+          </Grid>
+          <Grid item sm={12} xs={12}>
+          <Button variant="contained" color="primary" /*onClick={handleUpload}*/>
+              Save changes
+            </Button>
+            </Grid>
+            </Grid>
           </form>
           </Container>
-        
       ) : null}
     </div>
   );

@@ -60,6 +60,8 @@ const Portrait = (props) => {
     config: { duration: 2000 },
   });
 
+  const picturePath = myself[0].picture.path;
+
   return (
     <div style={{ marginTop: "120px" }}>
       <svg style={{ width: "200px", height: "200px" }} viewBox="0 0 160 160">
@@ -77,7 +79,7 @@ const Portrait = (props) => {
               y="0%"
               width="150"
               height="150"
-              xlinkHref={profileImageUrl}
+              xlinkHref={picturePath}
               transform="rotate(-90) translate(-150,5)"
             ></image>
           </pattern>
@@ -158,7 +160,8 @@ const Portrait = (props) => {
           <p
             style={{
               fontSize: "0.8em",
-              borderLeft: "15px solid rgb(0,255,255)",
+              borderLeft: "15px solid rgb(255,0,255)",
+
               width: "auto",
               margin: "5px auto",
               display: "inline-block",
@@ -180,7 +183,7 @@ const Portrait = (props) => {
           <p
             style={{
               fontSize: "0.8em",
-              borderLeft: "15px solid rgb(255,0,255)",
+              borderLeft: "15px solid rgb(0,255,255)",
               width: "auto",
               margin: "5px auto",
               display: "inline-block",

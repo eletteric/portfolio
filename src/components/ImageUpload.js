@@ -14,15 +14,21 @@ const ImageUpload = (props) => {
     setUser,
     loggedIn,
     setLoggedIn,
-    profileImage,
-    setProfileImage,
     profileImageUrl,
     setProfileImageUrl,
+    myself,
+    setMyself,
   } = useContext(UserContext);
 
   const [uploadProgress, setUploadProgress] = useState(0);
   const [imgChosen, setImgChosen] = useState(false);
+  const [uploadInProgress, setUploadInProgress] = useState(false);
   const [preview, setPreview] = useState([]);
+  const [profileImage, setProfileImage] = useState(null);
+
+  const myState = Object.assign([], myself);
+
+  // myself is an array of 1 object (UserContext State), declare the array myState and assign the array myself
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -50,6 +56,7 @@ const ImageUpload = (props) => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         setUploadProgress(percentTransfer);
+        setUploadInProgress(true);
       },
       (error) => {
         console.log(error);
@@ -62,14 +69,25 @@ const ImageUpload = (props) => {
           .getDownloadURL()
           .then((url) => {
             console.log(url);
-            setProfileImageUrl(url);
+            myState[0].picture.path = url;
+            setMyself(myState);
           });
-      }
+      
+          setTimeout(() => {
+            setUploadInProgress(false);
+            setImgChosen(false);
+          }, 2000);
+      
+        }
     );
+ 
   };
 
   return (
     <React.Fragment>
+      <Container>
+        <Typography variant="overline">Profile picture</Typography>
+      </Container>
       {imgChosen ? (
         <React.Fragment>
           <img
@@ -78,46 +96,48 @@ const ImageUpload = (props) => {
             height="160"
             width="160"
           />
-          <br/>
+          <br />
           <Typography variant="caption">preview</Typography>
-          <br/>
-          <br/>
-          <LinearProgress
-            variant="determinate"
-            value={uploadProgress}
-            color="secondary"
-            max="100"
-            style={{margin:'0% 20%'}}
-          />
-          <br/>
-          <Button variant="contained" color="primary" onClick={handleUpload}>
-            Upload image
-          </Button>
+          <br />
+          <br />
+          {uploadInProgress ? (
+            <LinearProgress
+              variant="determinate"
+              value={uploadProgress}
+              color="secondary"
+              max="100"
+              style={{ margin: "0% 20%" }}
+            />
+          ) : (
+            <Button variant="contained" color="primary" onClick={handleUpload}>
+              Upload image
+            </Button>
+          )}
+
+          <br />
         </React.Fragment>
       ) : (
         <React.Fragment>
-
-                <img
-            src={profileImageUrl || "http://via.placeholder.com/160x160"}
+          <img
+            src={
+              myState[0].picture.path || "http://via.placeholder.com/160x160"
+            }
             alt="profile picture"
             height="160"
             width="160"
           />
-          <br/>
-          <br/>
-        <Button variant="contained" component="label">
-          Choose image
-          <input
-            type="file"
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-          />
-        </Button>
+          <br />
+          <br />
+          <Button variant="contained" component="label">
+            Change image
+            <input
+              type="file"
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+            />
+          </Button>
         </React.Fragment>
       )}
-
-      <br />
-      <br />
     </React.Fragment>
   );
 };
