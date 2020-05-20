@@ -16,29 +16,56 @@ const Portrait = (props) => {
     setMyself,
   } = useContext(UserContext);
 
-  const setStrokeDashArrayInPercent = (strokeDashArray) => {
-    const negativePercent = strokeDashArray - 100;
-    const DashArrayInPercent = (Math.abs(negativePercent) / 100) * 471;
+const skillOne = myself[0].skills[0].score;
+const skillTwo = myself[0].skills[1].score;
+const skillThree = myself[0].skills[2].score;
+// percentage
 
-    return DashArrayInPercent;
-  };
+const totalAmount= skillOne+skillTwo+skillThree;
+
+function percentageOfPercentage(partialValue, totalValue){
+  return((100*partialValue)/totalValue);
+}
+
+const uno = percentageOfPercentage(skillOne,totalAmount);
+const dos = percentageOfPercentage(skillTwo,totalAmount);
+const tres = percentageOfPercentage(skillThree,totalAmount);
+// percentage to percentage total amount
+
+const calcPercentage = (per) =>{
+  return (471/100)*per;
+  }
+
+const un = calcPercentage(uno);
+const deux = calcPercentage(dos);
+const trois = calcPercentage(tres);
+
+const one = un;
+const two = deux+un;
+const three = trois+deux+un;
+
+const een = Math.abs(one-471);
+const twee = Math.abs(two-471);
+const drie = Math.abs(three-471);
+
+console.log(un, deux, trois);
 
   const designStroke = useSpring({
-    value: setStrokeDashArrayInPercent(myself[0].skills[0].score),
+    value: een,
     from: { value: 471 },
     delay: 50,
     config: { duration: 1000 },
   });
 
   const propsStroke = useSpring({
-    value: setStrokeDashArrayInPercent(myself[0].skills[1].score),
+    value: twee,
     from: { value: 471 },
     delay: 400,
     config: { duration: 1000 },
   });
 
   const codingStroke = useSpring({
-    value: setStrokeDashArrayInPercent(myself[0].skills[2].score),
+    value: drie,
     delay: 250,
     from: { value: 471 },
     config: { duration: 1250 },

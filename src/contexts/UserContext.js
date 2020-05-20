@@ -24,17 +24,17 @@ const UserContextProvider = (props) => {
         {
           id:1,
           skill: "",
-          score: 0,
+          score: 50,
         },
         {
           id:2,
           skill: "",
-          score: 0,
+          score: 75,
         },
         {
           id:3,
           skill: "",
-          score: 0,
+          score: 30,
         },
       ],
       languages: [
