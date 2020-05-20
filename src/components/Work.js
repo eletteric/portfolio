@@ -1,13 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-
+import React, { useContext, useState, useEffect, Component } from "react";
+import { render } from 'react-dom'
+import '../styles.css'
 import { WorkContext } from "../contexts/WorkContext";
-import {db, auth} from "../services/firebase";
-import Paper from '@material-ui/core/Paper';
+import {Grid} from 'mauerwerk';
+import firebase from "../services/firebase";
 
 const Work = () => {
   const { works, addWork, setWorks } = useContext(WorkContext);
 
-
+/*
   useEffect(() => {
     db.collection("projects")
     .get()
@@ -15,25 +16,48 @@ const Work = () => {
       snapshot=>{
         const projects = [];
         snapshot.forEach(doc=>{
-          const data = doc.data();
-          projects.push(data)
+          const projectData = doc.data();
+          projects.push(projectData)
         })
-        setWorks({projects: projects})
+        setWorks(projects)
         console.log(snapshot)}
       )
     .catch(err=> console.log(err))
   }, []);
+  */
+
 
 
 
   return  (
     <div className="absoluteWrapper" >
-      <div style={{ margin: 0, padding: 0, paddingTop: '90px', display:'flex', alignItems:'center', justifyContent:'center'}}>
-        {works.projects && works.projects.map((work) => {
-          return <Paper key={work.date} style={{margin:'10px'}}><img style={{display:'inline-block', padding:0, margin:0, height:'120px', width: '120px'}}src={work.image}/></Paper>;
-        })}
+      <Grid
+        className="grid"
+        // Arbitrary data, should contain keys, possibly heights, etc.
+        data={works}
+        // Key accessor, instructs grid on how to fet individual keys from the data set
+        keys={d => d.name}
+        // Can be a fixed value or an individual data accessor
+        heights={d => d.height}
+        // Number of columns
+        columns={3}>
+        {(works, maximized, toggle) => (
+          <div
+            className="cell"
+            style={{ backgroundImage: works.css }}
+            onClick={toggle}>
+            {maximized && (
+              <div className="details">
+                <div className="circle" style={{ background: works.css }} />
+                <h1>{works.name}</h1>
+                <p>{works.description}</p>
+              </div>
+            )}
+            {!maximized && <div className="default">{works.name}</div>}
+          </div>
+        )}
+      </Grid>
       </div>
-    </div>
   )
 
 };
