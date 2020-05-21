@@ -5,26 +5,27 @@ const Canvas = () => {
 
   useEffect(() => {
     function connect() {
-        let opacityValue=1;
-        for (let c = 0; c < circleArray.length; c++) {
-            for (let d = c; d < circleArray.length; d++) {
-                let distance = ((circleArray[c].x - circleArray[d].x) *
-                (circleArray[c].x - circleArray[d].x)) +
-                ((circleArray[c].y - circleArray[d].y) *
-                (circleArray[c].y - circleArray[d].y));
+      let opacityValue = 1;
+      for (let c = 0; c < circleArray.length; c++) {
+        for (let d = c; d < circleArray.length; d++) {
+          let distance =
+            (circleArray[c].x - circleArray[d].x) *
+              (circleArray[c].x - circleArray[d].x) +
+            (circleArray[c].y - circleArray[d].y) *
+              (circleArray[c].y - circleArray[d].y);
 
-                if(distance < (canvas.width/7)*(canvas.height/7)){
-                    opacityValue=1-(distance/20000);
-                    context.strokeStyle='rgba(0,0,0,' + opacityValue + ')';
-                    context.lineWidth=1;
-                    context.beginPath();
-                    context.moveTo(circleArray[c].x, circleArray[c].y);
-                    context.lineTo(circleArray[d].x, circleArray[d].y);
-                    context.stroke();
-                }
-            }
+          if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+            opacityValue = 1 - distance / 20000;
+            context.strokeStyle = "rgba(0,0,0," + opacityValue + ")";
+            context.lineWidth = 1;
+            context.beginPath();
+            context.moveTo(circleArray[c].x, circleArray[c].y);
+            context.lineTo(circleArray[d].x, circleArray[d].y);
+            context.stroke();
+          }
         }
       }
+    }
     initialize();
     function initialize() {
       window.addEventListener("resize", resizeCanvas, false);
@@ -39,7 +40,7 @@ const Canvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let colorArray = ['#FF00FF', '#00FFFF', '#868789'];
+    let colorArray = ["#FF00FF", "#00FFFF", "#868789"];
 
     let requestId;
 
@@ -54,7 +55,6 @@ const Canvas = () => {
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fillStyle = randomColor;
         context.fill();
-
       };
       this.update = () => {
         if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
@@ -67,7 +67,6 @@ const Canvas = () => {
         this.y += this.dy;
 
         this.draw();
-
       };
     }
 
@@ -79,27 +78,26 @@ const Canvas = () => {
       var dx = (Math.random() - 0.5) * 2;
       var dy = (Math.random() - 0.5) * 2;
       var radius = Math.random() * 5 + 1;
-      var randomColor = colorArray[Math.floor(Math.random()*colorArray.length)];
+      var randomColor =
+        colorArray[Math.floor(Math.random() * colorArray.length)];
 
       circleArray.push(new Circle(x, y, dx, dy, radius, randomColor));
     }
 
     const render = () => {
-    requestId = requestAnimationFrame(render);
+      requestId = requestAnimationFrame(render);
       context.clearRect(0, 0, canvas.width, canvas.height);
       for (let b = 0; b < circleArray.length; b++) {
         circleArray[b].update();
       }
       connect();
-    }
+    };
     render();
-
-
 
     return () => {
       cancelAnimationFrame(requestId);
     };
-  },[]);
+  }, []);
 
   return <canvas ref={ref} />;
 };

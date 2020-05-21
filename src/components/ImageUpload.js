@@ -72,15 +72,13 @@ const ImageUpload = (props) => {
             myState[0].picture.path = url;
             setMyself(myState);
           });
-      
-          setTimeout(() => {
-            setUploadInProgress(false);
-            setImgChosen(false);
-          }, 2000);
-      
-        }
+
+        setTimeout(() => {
+          setUploadInProgress(false);
+          setImgChosen(false);
+        }, 2000);
+      }
     );
- 
   };
 
   return (

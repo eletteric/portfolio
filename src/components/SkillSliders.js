@@ -15,55 +15,61 @@ const SkillSliders = (props) => {
 
   const skillList = myState[0].skills.map((skillItem) => {
     return (
-                  <React.Fragment key={skillItem.id}>
+      <React.Fragment key={skillItem.id}>
         <Typography id="input-slider1" gutterBottom>
           {skillItem.skill}
         </Typography>
-          <Slider
-            value={typeof skillItem.score === "number" ? skillItem.score : 0}
-            onChange={(event, newValue)=>{handleSliderChange(skillItem.id, newValue)}}
-            aria-labelledby="input-slider1"
-          />
-          <Input
-            style={{ width: "42px" }}
-            value={skillItem.score}
-            margin="dense"
-            onChange={(event)=>{handleInputChange(event, skillItem.id)}}
-            onBlur={()=>{handleBlur(skillItem.id)}}
-            inputProps={{
-              step: 10,
-              min: 0,
-              max: 100,
-              type: "number",
-              "aria-labelledby": "input-slider1",
-            }}
-          />
-        </React.Fragment>
+        <Slider
+          value={typeof skillItem.score === "number" ? skillItem.score : 0}
+          onChange={(event, newValue) => {
+            handleSliderChange(skillItem.id, newValue);
+          }}
+          aria-labelledby="input-slider1"
+        />
+        <Input
+          style={{ width: "42px" }}
+          value={skillItem.score}
+          margin="dense"
+          onChange={(event) => {
+            handleInputChange(event, skillItem.id);
+          }}
+          onBlur={() => {
+            handleBlur(skillItem.id);
+          }}
+          inputProps={{
+            step: 10,
+            min: 0,
+            max: 100,
+            type: "number",
+            "aria-labelledby": "input-slider1",
+          }}
+        />
+      </React.Fragment>
     );
   });
 
- const handleSliderChange = (id, newValue) => {
-       let filteredItem =  myState[0].skills.filter(skillItem => {
-            return skillItem.id == id;
-        })
-filteredItem[0].score=newValue;
+  const handleSliderChange = (id, newValue) => {
+    let filteredItem = myState[0].skills.filter((skillItem) => {
+      return skillItem.id == id;
+    });
+    filteredItem[0].score = newValue;
     setMyself(myState);
   };
 
-
-  const handleInputChange =(event, id) => {
-      let filteredItem =  myState[0].skills.filter(skillItem => {
-            return skillItem.id == id;
-        })
-filteredItem[0].score= event.target.value === "" ? "" : Number(event.target.value);
+  const handleInputChange = (event, id) => {
+    let filteredItem = myState[0].skills.filter((skillItem) => {
+      return skillItem.id == id;
+    });
+    filteredItem[0].score =
+      event.target.value === "" ? "" : Number(event.target.value);
     setMyself(myState);
   };
 
   const handleBlur = (id) => {
-             let filteredItem =  myState[0].skills.filter(skillItem => {
-            return skillItem.id == id;
-        })
-        let currentScore = filteredItem[0].score;
+    let filteredItem = myState[0].skills.filter((skillItem) => {
+      return skillItem.id == id;
+    });
+    let currentScore = filteredItem[0].score;
     if (currentScore < 0) {
       currentScore = 0;
       setMyself(myState);
@@ -73,11 +79,7 @@ filteredItem[0].score= event.target.value === "" ? "" : Number(event.target.valu
     }
   };
 
-  return (
-    <React.Fragment>
-        {skillList}
-    </React.Fragment>
-  );
+  return <React.Fragment>{skillList}</React.Fragment>;
 };
 
 export default SkillSliders;

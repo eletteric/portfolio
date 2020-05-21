@@ -42,19 +42,20 @@ const IntroText = (props) => {
       setTimeout(() => set(["Designer", "Creator", "Coder"]), 8500)
     );
 
-return()=>ref.current.map(clearTimeout);
-
+    return () => ref.current.map(clearTimeout);
   }, []);
 
   return (
-    <div style={{ marginTop: "30vh"}}>
-      {introTransitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
-        <animated.div className="transitions-item" key={key} style={rest}>
-          <animated.div style={{ overflow: "hidden", height: innerHeight }}>
-            {item}
+    <div style={{ marginTop: "30vh" }}>
+      {introTransitions.map(
+        ({ item, props: { innerHeight, ...rest }, key }) => (
+          <animated.div className="transitions-item" key={key} style={rest}>
+            <animated.div style={{ overflow: "hidden", height: innerHeight }}>
+              {item}
+            </animated.div>
           </animated.div>
-        </animated.div>
-      ))}
+        )
+      )}
     </div>
   );
 };

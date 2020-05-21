@@ -6,40 +6,44 @@ import { UserContext } from "../contexts/UserContext";
 import firebase from "../services/firebase";
 import Login from "./Login";
 import SkillSliders from "./SkillSliders";
-import TextField from '@material-ui/core/TextField';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import ImageUpload from "./ImageUpload";
 
 const Admin = (props) => {
-  
-  const { user, setUser, loggedIn, setLoggedIn, myself, setMyself} = useContext(UserContext);
+  const {
+    user,
+    setUser,
+    loggedIn,
+    setLoggedIn,
+    myself,
+    setMyself,
+  } = useContext(UserContext);
 
   const myState = Object.assign([], myself);
 
-
-const onChangeFirstName = (e) =>{
-  myState[0].name.first = e.target.value;
-  setMyself(myState);
-  }
-const onChangeLastName = (e) =>{
-  myState[0].name.last = e.target.value;
-  setMyself(myState);
-  }
-
+  const onChangeFirstName = (e) => {
+    myState[0].name.first = e.target.value;
+    setMyself(myState);
+  };
+  const onChangeLastName = (e) => {
+    myState[0].name.last = e.target.value;
+    setMyself(myState);
+  };
 
   useEffect(() => {
     authListener();
   }, []);
 
   useEffect(() => {
-    const localMemory = localStorage.getItem('Logged in');
-    if(localMemory =='true'){
-     setLoggedIn(true);
-    }else setLoggedIn(false);
-         }, []);
-         
+    const localMemory = localStorage.getItem("Logged in");
+    if (localMemory == "true") {
+      setLoggedIn(true);
+    } else setLoggedIn(false);
+  }, []);
+
   const authListener = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -76,53 +80,56 @@ const onChangeLastName = (e) =>{
     <div className="absoluteWrapper">
       {loggedIn ? (
         <Container>
-        <h1 style={{ marginTop: "100px" }}>Admin Page</h1>
-      </Container>
+          <h1 style={{ marginTop: "100px" }}>Admin Page</h1>
+        </Container>
       ) : (
         <Login />
       )}
 
       {loggedIn ? (
-            <Container component="main" maxWidth="md">
-                <form className={classes.form} /*onSubmit={submitProfile}*/ >
-                <Grid container spacing={3}>
-                  <Grid item sm={3} xs={6}>
-<TextField
-        required
-        id="firstname"
-        label="First name"
-        name="first"
-        autoComplete="First name"
-        size="small"
-        value={myself[0].name.first}
-        onChange={onChangeFirstName}
-      />
-<TextField
-        required
-        id="title"
-        label="Last name"
-        name="title"
-        autoComplete="title"
-        size="small"
-value={myself[0].name.last}
-onChange={onChangeLastName}
-      />
-      </Grid>
-      <Grid item sm={3} xs={6}>
-      <ImageUpload/>
-</Grid>
-<Grid item sm={6} xs={12}>
-<Typography variant="overline">3 best skills</Typography>
-<SkillSliders/>
-          </Grid>
-          <Grid item sm={12} xs={12}>
-          <Button variant="contained" color="primary" /*onClick={handleUpload}*/>
-              Save changes
-            </Button>
-            </Grid>
+        <Container component="main" maxWidth="md">
+          <form className={classes.form} /*onSubmit={submitProfile}*/>
+            <Grid container spacing={3}>
+              <Grid item sm={3} xs={6}>
+                <TextField
+                  required
+                  id="firstname"
+                  label="First name"
+                  name="first"
+                  autoComplete="First name"
+                  size="small"
+                  value={myself[0].name.first}
+                  onChange={onChangeFirstName}
+                />
+                <TextField
+                  required
+                  id="title"
+                  label="Last name"
+                  name="title"
+                  autoComplete="title"
+                  size="small"
+                  value={myself[0].name.last}
+                  onChange={onChangeLastName}
+                />
+              </Grid>
+              <Grid item sm={3} xs={6}>
+                <ImageUpload />
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                <Typography variant="overline">3 best skills</Typography>
+                <SkillSliders />
+              </Grid>
+              <Grid item sm={12} xs={12}>
+                <Button
+                  variant="contained"
+                  color="primary" /*onClick={handleUpload}*/
+                >
+                  Save changes
+                </Button>
+              </Grid>
             </Grid>
           </form>
-          </Container>
+        </Container>
       ) : null}
     </div>
   );

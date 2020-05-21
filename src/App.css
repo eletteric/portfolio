@@ -1,8 +1,5 @@
 .App {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh
 }
 
 .App-logo {
@@ -15,7 +12,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -56,7 +52,6 @@ body {
   overflow-x: hidden;
 }
 
-
 .MuiListItem-root a {
   text-align: center;
   width: 100%;
@@ -65,7 +60,8 @@ body {
   font-size: 1em;
   text-decoration: none;
   color: black;
-  padding-top:5px;padding-bottom:5px
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .MuiListItem-root a.activeItem {
   text-decoration: underline;
@@ -76,12 +72,12 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  overflow:hidden;
+  /*overflow:hidden;*/
   display: flex;
   flex-direction: column;
-  min-height: 100vh
+  min-height: 100vh;
 }
 
 .navWrapper {
@@ -95,14 +91,13 @@ body {
 
 canvas {
   position: absolute;
-  z-index:0;
+  z-index: 0;
   background: #fff;
   display: block;
+  overflow:hidden;
   top: 0;
   left: 0;
 }
-
-
 
 .transitions-item {
   overflow: hidden;
@@ -118,9 +113,12 @@ canvas {
   white-space: nowrap;
   cursor: pointer;
   line-height: 60px;
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
-  segoe ui, arial, sans-serif;
-z-index:1
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  z-index: 1;
 }
 
-p{padding:0; margin:0}
+p {
+  padding: 0;
+  margin: 0;
+}

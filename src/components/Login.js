@@ -14,7 +14,6 @@ import UserContextProvider from "../contexts/UserContext";
 import { UserContext } from "../contexts/UserContext";
 import firebase from "../services/firebase";
 
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(14),
@@ -32,25 +31,16 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor:'#FF00FF'
+    backgroundColor: "#FF00FF",
   },
 }));
 
 const Login = (props) => {
-
-
   const classes = useStyles();
 
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    setLoggedIn,
-    
-  } = useContext(UserContext);
-
-
+  const { email, setEmail, password, setPassword, setLoggedIn } = useContext(
+    UserContext
+  );
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -59,8 +49,6 @@ const Login = (props) => {
     setPassword(e.target.value);
   };
 
-
-
   const signIn = (e) => {
     e.preventDefault();
     firebase
@@ -68,7 +56,7 @@ const Login = (props) => {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         setLoggedIn(true);
-         localStorage.setItem('Logged in', true);
+        localStorage.setItem("Logged in", true);
       })
       .catch((err) => {
         console.log(err);

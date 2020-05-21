@@ -9,8 +9,8 @@ import { UserContext } from "./contexts/UserContext";
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
-    <UserContextProvider>
-      <App />
+      <UserContextProvider>
+        <App />
       </UserContextProvider>
     </BrowserRouter>
   </React.Fragment>,

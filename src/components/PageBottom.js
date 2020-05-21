@@ -34,12 +34,19 @@ const PageBottom = (props) => {
       zIndex: 10,
       marginTop: "auto",
       backgroundColor: "none",
+      textAlign: "center",
+      padding: "20px",
+      position: "fixed",
+      left: "0",
+      bottom: "0",
+      height: "60px",
+      width: "100%",
     },
     linkIcon: {
       fontSize: "1em",
       marginBottom: "-2px",
       marginRight: "5px",
-      padding:'0px'
+      padding: "0px",
     },
   }));
   const classes = useStyles();
@@ -47,9 +54,8 @@ const PageBottom = (props) => {
   const logout = (e) => {
     e.preventDefault();
     setLoggedIn(false);
-    localStorage.setItem('Logged in', false);
+    localStorage.setItem("Logged in", false);
     firebase.auth().signOut();
-
   };
 
   function Copyright() {
@@ -65,7 +71,6 @@ const PageBottom = (props) => {
     );
   }
 
-  
   return (
     <footer className={classes.footer}>
       <CssBaseline />
@@ -77,16 +82,22 @@ const PageBottom = (props) => {
           alignItems="center"
           spacing={2}
         >
-
-{loggedIn ? (
-  <>
-        <Grid item>
-          <Typography variant="body2" color="textSecondary">
-          <ExitToAppIcon className={classes.linkIcon} /><Link color="inherit" style={{cursor: 'pointer'}}onClick={logout}>log out</Link>
-          </Typography>
-        </Grid>
-        </>
-      ) : null}
+          {loggedIn ? (
+            <>
+              <Grid item>
+                <Typography variant="body2" color="textSecondary">
+                  <ExitToAppIcon className={classes.linkIcon} />
+                  <Link
+                    color="inherit"
+                    style={{ cursor: "pointer" }}
+                    onClick={logout}
+                  >
+                    log out
+                  </Link>
+                </Typography>
+              </Grid>
+            </>
+          ) : null}
 
           <Grid item>
             <Copyright />

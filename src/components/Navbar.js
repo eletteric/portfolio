@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     height: "auto",
     backgroundColor: "#fff",
     textAlign: "center",
-  }
+  },
 });
 
 const Navbar = (props) => {
@@ -49,13 +49,19 @@ const Navbar = (props) => {
         <div>
           <List>
             <ListItem button>
-              <NavLink exact activeClassName="activeItem" to="/">Home</NavLink>
+              <NavLink exact activeClassName="activeItem" to="/">
+                Home
+              </NavLink>
             </ListItem>
             <ListItem button>
-              <NavLink exact activeClassName="activeItem" to="/work">Work</NavLink>
+              <NavLink exact activeClassName="activeItem" to="/work">
+                Work
+              </NavLink>
             </ListItem>
             <ListItem button>
-              <NavLink exact activeClassName="activeItem" to="/about">About</NavLink>
+              <NavLink exact activeClassName="activeItem" to="/about">
+                About
+              </NavLink>
             </ListItem>
           </List>
         </div>

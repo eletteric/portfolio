@@ -14,33 +14,25 @@ import WorkContextProvider from "./contexts/WorkContext";
 import UserContextProvider from "./contexts/UserContext";
 import { UserContext } from "./contexts/UserContext";
 import { useTransition, animated } from "react-spring";
-import {db, auth} from "./services/firebase";
+import { db, auth } from "./services/firebase";
 
 const App = () => {
-
-
-  const {
-    myself,
-    setMyself,
-  } = useContext(UserContext);
+  const { myself, setMyself } = useContext(UserContext);
 
   useEffect(() => {
     db.collection("myself")
-    .get()
-    .then(
-      snapshot=>{
-        const me = [];
-        snapshot.forEach(doc=>{
+      .get()
+      .then((snapshot) => {
+        const myself = [];
+        snapshot.forEach((doc) => {
           const data = doc.data();
-          me.push(data);
-        })
-        setMyself(me);
-        console.log(snapshot)}
-      )
-    .catch(err=> console.log(err))
+          myself.push(data);
+        });
+        setMyself(myself);
+        console.log(snapshot);
+      })
+      .catch((err) => console.log(err));
   }, []);
-
- 
 
   const location = useLocation();
   const transitions = useTransition(location, (location) => location.pathname, {
@@ -51,37 +43,35 @@ const App = () => {
 
   return (
     <div className="App">
-
       <Navbar />
       {transitions.map(({ item, props, key }) => (
         <animated.div key={key} style={props}>
-            <Switch location={item} key={item.pathname}>
-              <Route exact path="/" render={(props) => <Home {...props} />} />
-              <Route
-                exact
-                path="/work"
-                render={(props) => (
-                  <WorkContextProvider>
-                    <Work {...props} />
-                  </WorkContextProvider>
-                )}
-              />
-              <Route
-                exact
-                path="/about"
-                render={(props) => <About {...props} />}
-              />
-              <Route
-                exact
-                path="/admin"
-                render={(props) => <Admin {...props} />}
-              />
-              <Route render={(props) => <NotFound {...props} />} />
-            </Switch>
+          <Switch location={item} key={item.pathname}>
+            <Route exact path="/" render={(props) => <Home {...props} />} />
+            <Route
+              exact
+              path="/work"
+              render={(props) => (
+                <WorkContextProvider>
+                  <Work {...props} />
+                </WorkContextProvider>
+              )}
+            />
+            <Route
+              exact
+              path="/about"
+              render={(props) => <About {...props} />}
+            />
+            <Route
+              exact
+              path="/admin"
+              render={(props) => <Admin {...props} />}
+            />
+            <Route render={(props) => <NotFound {...props} />} />
+          </Switch>
         </animated.div>
       ))}
-                  <PageBottom />
-
+      <PageBottom />
     </div>
   );
 };

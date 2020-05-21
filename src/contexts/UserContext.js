@@ -14,56 +14,54 @@ const UserContextProvider = (props) => {
     {
       name: {
         first: "",
-        last: ""
+        last: "",
       },
       picture: {
         path: "http://via.placeholder.com/160x160",
-        description: ""
+        description: "",
       },
       skills: [
         {
-          id:1,
+          id: 1,
           skill: "",
-          score: 50,
+          score: 5,
         },
         {
-          id:2,
+          id: 2,
           skill: "",
-          score: 75,
+          score: 5,
         },
         {
-          id:3,
+          id: 3,
           skill: "",
-          score: 30,
+          score: 5,
         },
       ],
       languages: [
         {
           language: "Dutch",
           abbreviation: "NL",
-          spoken: 100,
-          written: 95,
+          spoken: 0,
+          written: 0,
           native: true,
         },
         {
           language: "French",
           abbreviation: "FR",
-          spoken: 75,
-          written: 70,
+          spoken: 0,
+          written: 0,
           native: false,
         },
         {
-          language: "Englsh",
+          language: "English",
           abbreviation: "EN",
-          spoken: 85,
-          written: 75,
+          spoken: 0,
+          written: 0,
           native: false,
         },
       ],
     },
   ]);
-
- 
 
   return (
     <UserContext.Provider
@@ -78,7 +76,6 @@ const UserContextProvider = (props) => {
         setMyself,
         loggedIn,
         setLoggedIn,
-
       }}
     >
       {props.children}

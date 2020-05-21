@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "../contexts/UserContext";
-import {db, auth} from "../services/firebase";
-import Typography from '@material-ui/core/Typography';
+import { db, auth } from "../services/firebase";
+import Typography from "@material-ui/core/Typography";
 
 const Portrait = (props) => {
   const {
@@ -16,39 +16,39 @@ const Portrait = (props) => {
     setMyself,
   } = useContext(UserContext);
 
-const skillOne = myself[0].skills[0].score;
-const skillTwo = myself[0].skills[1].score;
-const skillThree = myself[0].skills[2].score;
-// percentage
+  const skillOne = myself[0].skills[0].score;
+  const skillTwo = myself[0].skills[1].score;
+  const skillThree = myself[0].skills[2].score;
+  // percentage
 
-const totalAmount= skillOne+skillTwo+skillThree;
+  const totalAmount = skillOne + skillTwo + skillThree;
 
-function percentageOfPercentage(partialValue, totalValue){
-  return((100*partialValue)/totalValue);
-}
-
-const uno = percentageOfPercentage(skillOne,totalAmount);
-const dos = percentageOfPercentage(skillTwo,totalAmount);
-const tres = percentageOfPercentage(skillThree,totalAmount);
-// percentage to percentage total amount
-
-const calcPercentage = (per) =>{
-  return (471/100)*per;
+  function percentageOfPercentage(partialValue, totalValue) {
+    return (100 * partialValue) / totalValue;
   }
 
-const un = calcPercentage(uno);
-const deux = calcPercentage(dos);
-const trois = calcPercentage(tres);
+  const uno = percentageOfPercentage(skillOne, totalAmount);
+  const dos = percentageOfPercentage(skillTwo, totalAmount);
+  const tres = percentageOfPercentage(skillThree, totalAmount);
+  // percentage to percentage total amount
 
-const one = un;
-const two = deux+un;
-const three = trois+deux+un;
+  const calcPercentage = (per) => {
+    return (471 / 100) * per;
+  };
 
-const een = Math.abs(one-471);
-const twee = Math.abs(two-471);
-const drie = Math.abs(three-471);
+  const un = calcPercentage(uno);
+  const deux = calcPercentage(dos);
+  const trois = calcPercentage(tres);
 
-console.log(un, deux, trois);
+  const one = un;
+  const two = deux + un;
+  const three = trois + deux + un;
+
+  const een = Math.abs(one - 471);
+  const twee = Math.abs(two - 471);
+  const drie = Math.abs(three - 471);
+
+  console.log(un, deux, trois);
 
   const designStroke = useSpring({
     value: een,
@@ -90,7 +90,7 @@ console.log(un, deux, trois);
   const picturePath = myself[0].picture.path;
 
   return (
-    <div style={{ marginTop: "120px" }}>
+    <div style={{ marginTop: "85px" }}>
       <svg style={{ width: "200px", height: "200px" }} viewBox="0 0 160 160">
         <defs>
           <pattern
@@ -163,9 +163,11 @@ console.log(un, deux, trois);
         />
       </svg>
       <br />
-  <Typography variant="caption">{myself[0].name.first} {myself[0].name.last}</Typography>
-<br/>
-  <br />
+      <Typography variant="caption">
+        {myself[0].name.first} {myself[0].name.last}
+      </Typography>
+      <br />
+      <br />
       <br />
       <Container
         style={{
