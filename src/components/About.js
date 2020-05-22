@@ -7,6 +7,7 @@ import Donut from "./Donut";
 import Portrait from "./Portrait";
 import { db, auth } from "../services/firebase";
 import { UserContext } from "../contexts/UserContext";
+import Typography from "@material-ui/core/Typography";
 
 import Photo from "../img/mn.jpg";
 import LanguageGraph from "./LanguageGraph";
@@ -33,6 +34,7 @@ const About = (props) => {
             <LanguageGraph />
           </Grid>
           <Grid item xs={12} sm={6}>
+          <Typography align="left">Soft Skills</Typography>
             <SoftSkills />
           </Grid>
         </Grid>

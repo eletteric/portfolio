@@ -19,21 +19,6 @@ import { db, auth } from "./services/firebase";
 const App = () => {
   const { myself, setMyself } = useContext(UserContext);
 
-  useEffect(() => {
-    db.collection("myself")
-      .get()
-      .then((snapshot) => {
-        const myself = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          myself.push(data);
-        });
-        setMyself(myself);
-        console.log(snapshot);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   const location = useLocation();
   const transitions = useTransition(location, (location) => location.pathname, {
     from: { opacity: 0, transform: "translateX(100vw)" },

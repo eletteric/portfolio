@@ -5,6 +5,15 @@ import { db, auth } from "../services/firebase";
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await db.collection("myself").get();
+      setMyself(data.docs.map((doc) => doc.data()));
+    };
+    fetchData();
+  }, []);
+
   const [user, setUser] = useState({});
   const [email, setEmail] = useState({});
   const [password, setPassword] = useState({});
@@ -36,6 +45,33 @@ const UserContextProvider = (props) => {
           skill: "",
           score: 5,
         },
+      ],
+      softSkills: [
+        {
+          id: 1,
+          skill: "Trustworthy",
+          score: 5,
+        },
+        {
+          id: 2,
+          skill: "Responsible",
+          score: 4,
+        },
+        {
+          id: 3,
+          skill: "Team Player",
+          score: 3,
+        },
+        {
+          id: 4,
+          skill: "Flexibility",
+          score: 3,
+        },
+        {
+          id: 5,
+          skill: "Leadership",
+          score: 4,
+        }
       ],
       languages: [
         {
