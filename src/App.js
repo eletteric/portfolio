@@ -9,12 +9,14 @@ import About from "./components/About";
 import NotFound from "./components/NotFound";
 import Admin from "./components/Admin";
 import PageBottom from "./components/PageBottom";
+import Curriculum from "./components/Curriculum";
 
 import WorkContextProvider from "./contexts/WorkContext";
 import UserContextProvider from "./contexts/UserContext";
 import { UserContext } from "./contexts/UserContext";
 import { useTransition, animated } from "react-spring";
 import { db, auth } from "./services/firebase";
+import CurriculumkContextProvider from "./contexts/CurriculumContext";
 
 const App = () => {
   const { myself, setMyself } = useContext(UserContext);
@@ -40,6 +42,15 @@ const App = () => {
                 <WorkContextProvider>
                   <Work {...props} />
                 </WorkContextProvider>
+              )}
+            />
+                        <Route
+              exact
+              path="/curriculum"
+              render={(props) => (
+                <CurriculumkContextProvider>
+                  <Curriculum {...props} />
+                  </CurriculumkContextProvider>
               )}
             />
             <Route

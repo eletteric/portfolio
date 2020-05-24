@@ -33,24 +33,24 @@ const UserContextProvider = (props) => {
         {
           id: 1,
           skill: "",
-          score: 5,
+          score: 1,
         },
         {
           id: 2,
           skill: "",
-          score: 5,
+          score: 1,
         },
         {
           id: 3,
           skill: "",
-          score: 5,
+          score: 1,
         },
       ],
       softSkills: [
         {
           id: 1,
           skill: "Trustworthy",
-          score: 5,
+          score: 4.5,
         },
         {
           id: 2,
@@ -76,21 +76,21 @@ const UserContextProvider = (props) => {
       languages: [
         {
           language: "Dutch",
-          abbreviation: "NL",
+          id: 0,
           spoken: 0,
           written: 0,
           native: true,
         },
         {
           language: "French",
-          abbreviation: "FR",
+          id: 1,
           spoken: 0,
           written: 0,
           native: false,
         },
         {
           language: "English",
-          abbreviation: "EN",
+          id: 2,
           spoken: 0,
           written: 0,
           native: false,

@@ -59,6 +59,11 @@ const Navbar = (props) => {
               </NavLink>
             </ListItem>
             <ListItem button>
+              <NavLink exact activeClassName="activeItem" to="/curriculum">
+                Curriculum
+              </NavLink>
+            </ListItem>
+            <ListItem button>
               <NavLink exact activeClassName="activeItem" to="/about">
                 About
               </NavLink>

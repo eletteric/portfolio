@@ -32,7 +32,7 @@ const SoftSkills = () => {
   const aniProps = useSpring({
     ref: springRef,
     delay: 20,
-    config:{duration: 250},
+    config:{duration: 150},
     from: { opacity: 0},
     to: { opacity: 1}
   })
@@ -42,9 +42,9 @@ const SoftSkills = () => {
   const transitions = useTransition(myself[0].softSkills, item => item.skill, {
     ref: transRef,
     unique: true,
-    trail: 400 / myself[0].softSkills.length,
-    delay: 200,
-    config:{duration: 800},
+    trail: 2000 / myself[0].softSkills.length,
+    delay: 500,
+    config:{duration: 200},
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0}

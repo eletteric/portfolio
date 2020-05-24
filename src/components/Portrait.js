@@ -197,7 +197,7 @@ const Portrait = (props) => {
               paddingLeft: "5px",
             }}
           >
-            Design
+            {myself[0].skills[0].skill}
           </p>
         </div>
         <div style={{ width: "100px" }}>
@@ -219,7 +219,7 @@ const Portrait = (props) => {
               paddingLeft: "5px",
             }}
           >
-            Coding
+                        {myself[0].skills[1].skill}
           </p>
         </div>
         <div style={{ width: "100px" }}>
@@ -241,7 +241,7 @@ const Portrait = (props) => {
               paddingLeft: "5px",
             }}
           >
-            Other
+                        {myself[0].skills[2].skill}
           </p>
         </div>
       </Container>

@@ -6,11 +6,13 @@ import { UserContext } from "../contexts/UserContext";
 import firebase from "../services/firebase";
 import Login from "./Login";
 import SkillSliders from "./SkillSliders";
+import LanguageSliders from "./LanguageSliders";
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ImageUpload from "./ImageUpload";
+import SoftSkillRating from "./SoftSkillRating";
 
 const Admin = (props) => {
   const {
@@ -42,7 +44,7 @@ const Admin = (props) => {
     if (localMemory == "true") {
       setLoggedIn(true);
     } else setLoggedIn(false);
-  }, []);
+  }, [loggedIn]);
 
   const authListener = () => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -74,24 +76,36 @@ const Admin = (props) => {
     },
   }));
 
+  const submitProfile = () =>{
+    db.collection("myself").doc('56hRy1cU7VHxPuenWq6n').set(myself[0]);
+  }
+
   const classes = useStyles();
 
   return (
     <div className="absoluteWrapper">
-      {loggedIn ? (
-        <Container>
-          <h1 style={{ marginTop: "100px" }}>Admin Page</h1>
-        </Container>
-      ) : (
+      {loggedIn ? null: (
         <Login />
       )}
 
       {loggedIn ? (
-        <Container component="main" maxWidth="md">
-          <form className={classes.form} /*onSubmit={submitProfile}*/>
-            <Grid container spacing={3}>
-              <Grid item sm={3} xs={6}>
-                <TextField
+        <Container component="main" maxWidth="md" style={{ marginTop: "70px", paddingBottom: "100px" }}>
+          <form className={classes.form} >
+            <Grid container spacing={5}>
+              <Grid item sm={4} xs={12}>              
+              <Grid container spacing={1}>
+              <Grid item xs={12}>
+              <Typography variant="overline">Profile Picture</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <br/>
+              <ImageUpload />
+              <br/>
+              <br/>
+
+              </Grid>
+              <Grid item xs={12}>
+              <TextField
                   required
                   id="firstname"
                   label="First name"
@@ -99,7 +113,7 @@ const Admin = (props) => {
                   autoComplete="First name"
                   size="small"
                   value={myself[0].name.first}
-                  onChange={onChangeFirstName}
+                  onChange={onChangeFirstName} style={{marginBottom: '10px'}}
                 />
                 <TextField
                   required
@@ -111,18 +125,26 @@ const Admin = (props) => {
                   value={myself[0].name.last}
                   onChange={onChangeLastName}
                 />
+                 </Grid>
+                 </Grid>
               </Grid>
-              <Grid item sm={3} xs={6}>
-                <ImageUpload />
+              <Grid item sm={4} xs={12}>
+              <Typography variant="overline">3 best skills</Typography>
+                 <SkillSliders />
+                 <br/>
+                 <br/>
+                 <Typography variant="overline">Soft skills</Typography>
+                 <SoftSkillRating/>
               </Grid>
-              <Grid item sm={6} xs={12}>
-                <Typography variant="overline">3 best skills</Typography>
-                <SkillSliders />
+              <Grid item sm={4} xs={12}>
+              <Typography variant="overline">3 best languages</Typography>
+                <LanguageSliders />
               </Grid>
               <Grid item sm={12} xs={12}>
                 <Button
                   variant="contained"
-                  color="primary" /*onClick={handleUpload}*/
+                  color="primary"
+                  onClick={submitProfile}
                 >
                   Save changes
                 </Button>

@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { UserContext } from "../contexts/UserContext";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 
 const SkillSliders = (props) => {
   const { myself, setMyself } = useContext(UserContext);
@@ -13,12 +14,35 @@ const SkillSliders = (props) => {
   const myState = Object.assign([], myself);
   // myself is an array of 1 object (UserContext State), declare the array myState and assign the array myself
 
+  const onChangeSkillName = (event, id) => {
+    let filteredItem = myState[0].skills.filter((item) => {
+      return item.id == id;
+    });
+    filteredItem[0].skill = event.target.value;
+    setMyself(myState);
+  };
+
+
+
+
   const skillList = myState[0].skills.map((skillItem) => {
     return (
       <React.Fragment key={skillItem.id}>
-        <Typography id="input-slider1" gutterBottom>
-          {skillItem.skill}
-        </Typography>
+        <Grid container spacing={0}>
+        <Grid item xs={12}>
+        <TextField
+        margin="none"
+        id="{skillItem.id}"
+                  required fullWidth
+                  size="small"
+                  margin="normal"
+                  value={skillItem.skill}
+                  onChange={(event) => {
+                    onChangeSkillName(event, skillItem.id);
+                  }}
+                    />
+        </Grid>
+        <Grid item xs={9}>
         <Slider
           value={typeof skillItem.score === "number" ? skillItem.score : 0}
           onChange={(event, newValue) => {
@@ -26,8 +50,10 @@ const SkillSliders = (props) => {
           }}
           aria-labelledby="input-slider1"
         />
+        </Grid>
+        <Grid item xs={3} align="right">
         <Input
-          style={{ width: "42px" }}
+          style={{ width: "48px" }}
           value={skillItem.score}
           margin="dense"
           onChange={(event) => {
@@ -44,6 +70,8 @@ const SkillSliders = (props) => {
             "aria-labelledby": "input-slider1",
           }}
         />
+        </Grid>
+        </Grid>
       </React.Fragment>
     );
   });

@@ -83,9 +83,6 @@ const ImageUpload = (props) => {
 
   return (
     <React.Fragment>
-      <Container>
-        <Typography variant="overline">Profile picture</Typography>
-      </Container>
       {imgChosen ? (
         <React.Fragment>
           <img
@@ -107,7 +104,7 @@ const ImageUpload = (props) => {
               style={{ margin: "0% 20%" }}
             />
           ) : (
-            <Button variant="contained" color="primary" onClick={handleUpload}>
+            <Button color="primary" onClick={handleUpload}>
               Upload image
             </Button>
           )}
@@ -126,7 +123,7 @@ const ImageUpload = (props) => {
           />
           <br />
           <br />
-          <Button variant="contained" component="label">
+          <Button component="label">
             Change image
             <input
               type="file"

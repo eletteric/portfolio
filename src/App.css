@@ -122,3 +122,16 @@ p {
   padding: 0;
   margin: 0;
 }
+
+.ratingFrame{
+  display: 'flex';
+  flex-direction: 'column';
+}
+
+.MuiInputBase-root{
+  font-size: 0.8rem!important;
+}
+
+.MuiSlider-root{
+  padding: 0 !important;
+}
