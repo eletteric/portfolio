@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ImageUpload from "./ImageUpload";
 import SoftSkillRating from "./SoftSkillRating";
+import MilestoneAdmin from "./MilestoneAdmin";
 
 const Admin = (props) => {
   const {
@@ -89,7 +90,7 @@ const Admin = (props) => {
       )}
 
       {loggedIn ? (
-        <Container component="main" maxWidth="md" style={{ marginTop: "70px", paddingBottom: "100px" }}>
+        <Container component="main" maxWidth="md" style={{ marginTop: "70px", paddingBottom: "500px" }}>
           <form className={classes.form} >
             <Grid container spacing={5}>
               <Grid item sm={4} xs={12}>              
@@ -136,18 +137,22 @@ const Admin = (props) => {
                  <Typography variant="overline">Soft skills</Typography>
                  <SoftSkillRating/>
               </Grid>
-              <Grid item sm={4} xs={12}>
+              <Grid item sm={4} xs={12} align="left">
               <Typography variant="overline">3 best languages</Typography>
                 <LanguageSliders />
-              </Grid>
-              <Grid item sm={12} xs={12}>
+                <br/>
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={submitProfile}
+                  size="small"
                 >
                   Save changes
                 </Button>
+              </Grid>
+              <Grid item sm={12} xs={12}>
+              <Typography variant="overline">Milestones</Typography>
+                <MilestoneAdmin/> 
               </Grid>
             </Grid>
           </form>

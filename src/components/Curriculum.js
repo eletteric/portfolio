@@ -11,7 +11,9 @@ const Curriculum = () => {
     <div className="absoluteWrapper">
 <h1 style={{ marginTop: "85px" }}>Curriculum</h1>
 <p>Lorem Ipsum</p>
+<Container>
 <Timeline/>
+</Container>
 </div>
   )
 }

@@ -48,9 +48,7 @@ const App = () => {
               exact
               path="/curriculum"
               render={(props) => (
-                <CurriculumkContextProvider>
                   <Curriculum {...props} />
-                  </CurriculumkContextProvider>
               )}
             />
             <Route

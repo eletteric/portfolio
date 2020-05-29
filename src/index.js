@@ -5,12 +5,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import UserContextProvider from "./contexts/UserContext";
+import CurriculumContextProvider from "./contexts/CurriculumContext";
 import { UserContext } from "./contexts/UserContext";
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <UserContextProvider>
+      <CurriculumContextProvider>
         <App />
+        </CurriculumContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </React.Fragment>,

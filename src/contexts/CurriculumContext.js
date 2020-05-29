@@ -10,8 +10,8 @@ const CurriculumkContextProvider = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await db.collection("milestones").get();
-      setMilestones(data.docs.map((doc) => doc.data()));
+      const data = await db.collection("milestones").orderBy('createdAt', 'desc').get();
+      setMilestones(data.docs.map(doc => ({...doc.data(), id: doc.id}) ));
     };
     fetchData();
   }, []);
