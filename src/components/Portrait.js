@@ -90,8 +90,8 @@ const Portrait = (props) => {
   const picturePath = myself[0].picture.path;
 
   return (
-    <div style={{ marginTop: "85px" }}>
-      <svg style={{ width: "200px", height: "200px" }} viewBox="0 0 160 160">
+    <React.Fragment>
+      <svg style={{ width: "250px", height: "250px" }} viewBox="0 0 160 160">
         <defs>
           <pattern
             id="image"
@@ -178,15 +178,15 @@ const Portrait = (props) => {
         }}
       >
         <div style={{ width: "100px" }}>
-          <p>
+          <div>
             <animated.span
               style={{ display: "inline-block", fontSize: "1.5em" }}
             >
               {designNumber.number.interpolate((val) => Math.floor(val))}
             </animated.span>{" "}
             %
-          </p>
-          <p
+          </div>
+          <div
             style={{
               fontSize: "0.8em",
               borderLeft: "15px solid rgb(255,0,255)",
@@ -198,18 +198,18 @@ const Portrait = (props) => {
             }}
           >
             {myself[0].skills[0].skill}
-          </p>
+          </div>
         </div>
         <div style={{ width: "100px" }}>
-          <p>
+          <div>
             <animated.span
               style={{ display: "inline-block", fontSize: "1.5em" }}
             >
               {codingNumber.number.interpolate((val) => Math.floor(val))}
             </animated.span>{" "}
             %
-          </p>
-          <p
+          </div>
+          <div
             style={{
               fontSize: "0.8em",
               borderLeft: "15px solid rgb(0,255,255)",
@@ -220,18 +220,18 @@ const Portrait = (props) => {
             }}
           >
                         {myself[0].skills[1].skill}
-          </p>
+          </div>
         </div>
         <div style={{ width: "100px" }}>
-          <p>
+          <div>
             <animated.span
               style={{ display: "inline-block", fontSize: "1.5em" }}
             >
               {otherNumber.number.interpolate((val) => Math.floor(val))}
             </animated.span>{" "}
             %
-          </p>
-          <p
+          </div>
+          <div
             style={{
               fontSize: "0.8em",
               borderLeft: "15px solid rgb(134,135,137)",
@@ -242,10 +242,10 @@ const Portrait = (props) => {
             }}
           >
                         {myself[0].skills[2].skill}
-          </p>
+          </div>
         </div>
       </Container>
-    </div>
+    </React.Fragment>
   );
 };
 

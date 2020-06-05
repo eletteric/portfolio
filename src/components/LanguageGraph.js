@@ -50,11 +50,11 @@ const LanguageGraph = (props) => {
 
   return (
     <React.Fragment>
-      <Typography align="left">Languages</Typography>
+      {/*<Typography align="left">Languages</Typography>*/}
       <svg
         version="1.1"
         width="100%"
-        height="140px"
+        height="180px"
         viewBox="-50 0 140 55"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"

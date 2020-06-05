@@ -6,13 +6,30 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import UserContextProvider from "./contexts/UserContext";
 import CurriculumContextProvider from "./contexts/CurriculumContext";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { UserContext } from "./contexts/UserContext";
+import pink from '@material-ui/core/colors/pink';
+import blue from '@material-ui/core/colors/blue';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {main: '#FF00FF'},
+    secondary: {main: '#00FFFF'}
+   }
+});
+
+console.log(theme)
+
+
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <UserContextProvider>
       <CurriculumContextProvider>
+        <MuiThemeProvider theme = {theme}>
         <App />
+        </MuiThemeProvider>
         </CurriculumContextProvider>
       </UserContextProvider>
     </BrowserRouter>

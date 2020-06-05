@@ -52,9 +52,13 @@ body {
   overflow-x: hidden;
 }
 
+
+.MuiListItem-root{
+  width:auto !important;
+}
 .MuiListItem-root a {
   text-align: center;
-  width: 100%;
+  width: auto;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1em;
@@ -62,6 +66,7 @@ body {
   color: black;
   padding-top: 5px;
   padding-bottom: 5px;
+  display: inline-block !important;
 }
 .MuiListItem-root a.activeItem {
   text-decoration: underline;
@@ -137,6 +142,9 @@ p {
 }
 
   .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus{color: grey !important}
+
+  .slick-prev, .slick-next{color: grey !important; padding-bottom: 5px !important;}
+.slick-slide, svg{outline: none !important;}
 
   .MuiFormControlLabel-label{font-size: 0.85rem !important;}
 

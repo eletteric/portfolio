@@ -11,7 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
-  list: {
+ /* list: {
     width: 250,
   },
   fullList: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     height: "auto",
     backgroundColor: "#fff",
     textAlign: "center",
-  },
+  },*/
 });
 
 const Navbar = (props) => {
@@ -41,29 +41,28 @@ const Navbar = (props) => {
   const menuItems = () => {
     return (
       <div
-        className="fullList"
         role="presentation"
         onClick={toggleDrawer(false)}
         onKeyDown={toggleDrawer(false)}
       >
         <div>
-          <List>
-            <ListItem button>
+          <List style={{display:'flex', alignItems:'center', textAlign:'center', flexWrap: 'nowrap', justifyContent:'center'}}>
+            <ListItem >
               <NavLink exact activeClassName="activeItem" to="/">
                 Home
               </NavLink>
             </ListItem>
-            <ListItem button>
+            <ListItem >
               <NavLink exact activeClassName="activeItem" to="/work">
                 Work
               </NavLink>
             </ListItem>
-            <ListItem button>
+            <ListItem >
               <NavLink exact activeClassName="activeItem" to="/curriculum">
                 Curriculum
               </NavLink>
             </ListItem>
-            <ListItem button>
+            <ListItem >
               <NavLink exact activeClassName="activeItem" to="/about">
                 About
               </NavLink>

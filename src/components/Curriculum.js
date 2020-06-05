@@ -10,8 +10,7 @@ const Curriculum = () => {
   return (
     <div className="absoluteWrapper">
 <h1 style={{ marginTop: "85px" }}>Curriculum</h1>
-<p>Lorem Ipsum</p>
-<Container>
+<Container maxWidth="md">
 <Timeline/>
 </Container>
 </div>
