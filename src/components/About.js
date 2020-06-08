@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Donut from "./Donut";
+import Tools from "./Tools";
 import Portrait from "./Portrait";
 import { db, auth } from "../services/firebase";
 import { UserContext } from "../contexts/UserContext";
@@ -20,6 +20,8 @@ import Box from '@material-ui/core/Box';
 import LanguageSharpIcon from '@material-ui/icons/LanguageSharp';
 import PeopleSharpIcon from '@material-ui/icons/PeopleSharp';
 import PersonSharpIcon from '@material-ui/icons/PersonSharp';
+import TimelineSharpIcon from '@material-ui/icons/TimelineSharp';
+import Timeline from "./Timeline";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,20 +75,33 @@ const About = (props) => {
 
   return (
     <div className="absoluteWrapper">
-<Container style={{paddingTop:'100px'}}>
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+<Container style={{paddingTop:'75px'}}>
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="scrollable"
+          scrollButtons="on" centered>
           <Tab label="Skills" icon={<PersonSharpIcon />} {...a11yProps(0)} />
           <Tab label="Languages" icon={<LanguageSharpIcon />} {...a11yProps(1)} />
           <Tab label="Soft Skills" icon={<PeopleSharpIcon />} {...a11yProps(2)} />
+          <Tab label="Curriculum" icon={<TimelineSharpIcon />} {...a11yProps(3)} />
+          <Tab label="Tools" icon={<TimelineSharpIcon />} {...a11yProps(4)} />
         </Tabs>
       <TabPanel value={value} index={0}>
       <Portrait />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} style={{paddingTop:'20px'}}>
       <LanguageGraph />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={2} style={{paddingTop:'20px'}}>
       <SoftSkills />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+      <Container maxWidth="md">
+      <Timeline/>
+        </Container>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+      <Container maxWidth="md">
+      <Tools />
+        </Container>
       </TabPanel>
       </Container>
     </div>

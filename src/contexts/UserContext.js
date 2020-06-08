@@ -6,13 +6,6 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await db.collection("myself").get();
-      setMyself(data.docs.map((doc) => doc.data()));
-    };
-    fetchData();
-  }, []);
 
   const [user, setUser] = useState({});
   const [email, setEmail] = useState({});
@@ -98,6 +91,15 @@ const UserContextProvider = (props) => {
       ],
     },
   ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await db.collection("myself").get();
+      setMyself(data.docs.map((doc) => doc.data()));
+    };
+    fetchData();
+  }, []);
+
 
   return (
     <UserContext.Provider

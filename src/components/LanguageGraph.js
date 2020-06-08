@@ -160,6 +160,33 @@ const LanguageGraph = (props) => {
           strokeWidth="2"
         />
       </svg>
+      <br/>
+      <br/>
+      <div
+            style={{
+              fontSize: "0.8em",
+              borderLeft: "15px solid cyan",
+              width: "100px",
+              margin: "5px auto",
+              display: "inline-block",
+              paddingLeft: "5px",
+              textAlign:'left'
+            }}
+          >
+                        spoken
+          </div>
+          <div
+            style={{
+              fontSize: "0.8em",
+              borderLeft: "15px solid grey",
+              width: "auto",
+              margin: "5px auto",
+              display: "inline-block",
+              paddingLeft: "5px",
+            }}
+          >
+                        written
+          </div>
     </React.Fragment>
   );
 };

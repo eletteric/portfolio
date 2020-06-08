@@ -92,6 +92,7 @@ body {
   height: 60px;
   width: 100%;
   z-index: 1;
+  text-align:right
 }
 
 canvas {
@@ -151,3 +152,15 @@ p {
   .period{fill:grey; font-size: 9px;}
   .function{fill:#3C3E3F; font-size: 12px;}
   .organisation{fill: #818282; font-size: 10px;}
+
+
+  #menu-list-grow li{
+    display: inline-flex !important;
+  }
+  #menu-list-grow {
+    padding-right: 10px !important;
+  }
+
+  .MuiTab-wrapper{font-size: 12px}
+
+  .MuiTab-root{min-width: 140px;}

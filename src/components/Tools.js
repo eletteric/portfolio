@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
-const Donut = (props) => {
+const Tools = (props) => {
   const setStrokeDashArrayInPercent = (strokeDashArray) => {
     const negativePercent = strokeDashArray - 100;
     const DashArrayInPercent = (Math.abs(negativePercent) / 100) * 156;
@@ -9,17 +9,17 @@ const Donut = (props) => {
     return DashArrayInPercent;
   };
 
-  const percent = props.intValue;
+  const percent = 80;
 
   const propsStroke = useSpring({
     value: setStrokeDashArrayInPercent(percent),
     from: { value: 156 },
-    config: { duration: 2000 },
+    config: { duration: 500 },
   });
   const propsNumber = useSpring({
     number: Math.abs(percent),
     from: { number: 0 },
-    config: { duration: 2000 },
+    config: { duration: 500 },
   });
 
   return (
@@ -81,4 +81,4 @@ const Donut = (props) => {
   );
 };
 
-export default Donut;
+export default Tools;

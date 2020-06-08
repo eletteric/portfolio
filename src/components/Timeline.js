@@ -41,6 +41,8 @@ const Timeline = () => {
     />
   );
 
+  const fadeInProps = useSpring({opacity: 1, from: {opacity: 0}})
+
   const settings = {
     nextArrow: <SlickArrowRight />,
     prevArrow: <SlickArrowLeft />,
@@ -165,9 +167,9 @@ const Timeline = () => {
   });
 
   return (
-    <div>
+    <animated.div style={fadeInProps}>
       <Slider {...settings}>{milestoneList}</Slider>
-    </div>
+    </animated.div>
   );
 };
 export default Timeline;

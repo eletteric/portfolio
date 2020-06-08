@@ -10,6 +10,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { UserContext } from "./contexts/UserContext";
 import pink from '@material-ui/core/colors/pink';
 import blue from '@material-ui/core/colors/blue';
+import grey from '@material-ui/core/colors/grey';
+import ToolContextProvider from "./contexts/ToolContext";
 
 
 const theme = createMuiTheme({
@@ -26,11 +28,13 @@ ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <UserContextProvider>
+        <ToolContextProvider>
       <CurriculumContextProvider>
         <MuiThemeProvider theme = {theme}>
         <App />
         </MuiThemeProvider>
         </CurriculumContextProvider>
+        </ToolContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </React.Fragment>,

@@ -4,11 +4,16 @@ import { Link, NavLink, withRouter } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Divider from "@material-ui/core/Divider";
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
 
 const useStyles = makeStyles({
  /* list: {
@@ -23,74 +28,108 @@ const useStyles = makeStyles({
 });
 
 const Navbar = (props) => {
+
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    open: false,
-  });
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setState({ ...state, open });
+
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const menuItems = () => {
-    return (
-      <div
-        role="presentation"
-        onClick={toggleDrawer(false)}
-        onKeyDown={toggleDrawer(false)}
-      >
-        <div>
-          <List style={{display:'flex', alignItems:'center', textAlign:'center', flexWrap: 'nowrap', justifyContent:'center'}}>
-            <ListItem >
-              <NavLink exact activeClassName="activeItem" to="/">
-                Home
-              </NavLink>
-            </ListItem>
-            <ListItem >
-              <NavLink exact activeClassName="activeItem" to="/work">
-                Work
-              </NavLink>
-            </ListItem>
-            <ListItem >
-              <NavLink exact activeClassName="activeItem" to="/curriculum">
-                Curriculum
-              </NavLink>
-            </ListItem>
-            <ListItem >
-              <NavLink exact activeClassName="activeItem" to="/about">
-                About
-              </NavLink>
-            </ListItem>
-          </List>
-        </div>
-      </div>
-    );
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
   };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+
+
 
   return (
     <div className="navWrapper">
       <IconButton
-        onClick={toggleDrawer(true)}
-        color="inherit"
+         ref={anchorRef}
+         aria-controls={open ? 'menu-list-grow' : undefined}
+         aria-haspopup="true"
+         onClick={handleToggle}
+         color="inherit"
         aria-label="menu"
-        size="medium"
+        size="small"
+        style={{margin: '5px 20px 5px 15px'}}
       >
-        <MenuIcon style={{ fontSize: "2em" }} />
+        <MenuIcon style={{ fontSize: "1.8em" }} />
       </IconButton>
-      <SwipeableDrawer
-        anchor="top"
-        open={state.open}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
-      >
-        {menuItems()}
-      </SwipeableDrawer>
+
+      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal placement="left-end">
+          {({ TransitionProps, placement }) => (
+
+              <div>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} >
+                  <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              timeout={{
+                enter: 600,
+              }}
+            >
+                    <MenuItem onClick={handleClose} dense><NavLink exact activeClassName="activeItem" to="/">
+                Home
+              </NavLink></MenuItem>
+              </Grow>
+              <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              timeout={{
+                enter: 400,
+              }}
+            >
+                    <MenuItem onClick={handleClose} dense>
+                    <NavLink exact activeClassName="activeItem" to="/work">
+                Work
+              </NavLink>
+                    </MenuItem>
+                    </Grow>
+                    <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              timeout={{
+                enter: 200,
+              }}
+            >
+                    <MenuItem onClick={handleClose} dense>
+              <NavLink exact activeClassName="activeItem" to="/about">
+                About
+              </NavLink>
+                    </MenuItem>
+                    </Grow>
+                  </MenuList>
+                </ClickAwayListener>
+              </div>
+          )}
+        </Popper>
+
     </div>
   );
 };
