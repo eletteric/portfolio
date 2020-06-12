@@ -21,6 +21,7 @@ import LanguageSharpIcon from '@material-ui/icons/LanguageSharp';
 import PeopleSharpIcon from '@material-ui/icons/PeopleSharp';
 import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import TimelineSharpIcon from '@material-ui/icons/TimelineSharp';
+import BuildSharpIcon from '@material-ui/icons/BuildSharp';
 import Timeline from "./Timeline";
 
 function TabPanel(props) {
@@ -77,12 +78,12 @@ const About = (props) => {
     <div className="absoluteWrapper">
 <Container style={{paddingTop:'75px'}}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="scrollable"
-          scrollButtons="on" centered>
+          scrollButtons="on">
           <Tab label="Skills" icon={<PersonSharpIcon />} {...a11yProps(0)} />
           <Tab label="Languages" icon={<LanguageSharpIcon />} {...a11yProps(1)} />
           <Tab label="Soft Skills" icon={<PeopleSharpIcon />} {...a11yProps(2)} />
           <Tab label="Curriculum" icon={<TimelineSharpIcon />} {...a11yProps(3)} />
-          <Tab label="Tools" icon={<TimelineSharpIcon />} {...a11yProps(4)} />
+          <Tab label="Tools" icon={<BuildSharpIcon />} {...a11yProps(4)} />
         </Tabs>
       <TabPanel value={value} index={0}>
       <Portrait />

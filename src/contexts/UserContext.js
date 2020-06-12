@@ -19,7 +19,7 @@ const UserContextProvider = (props) => {
         last: "",
       },
       picture: {
-        path: "http://via.placeholder.com/160x160",
+        path: "https://via.placeholder.com/160x160",
         description: "",
       },
       skills: [

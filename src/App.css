@@ -146,7 +146,7 @@ p {
 
   .slick-prev, .slick-next{color: grey !important; padding-bottom: 5px !important;}
 .slick-slide, svg{outline: none !important;}
-
+..slick-dots{bottom: -45px !important;}
   .MuiFormControlLabel-label{font-size: 0.85rem !important;}
 
   .period{fill:grey; font-size: 9px;}

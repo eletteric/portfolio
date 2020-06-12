@@ -46,7 +46,7 @@ const IntroText = (props) => {
   }, []);
 
   return (
-    <div style={{ marginTop: "30vh" }}>
+    <div style={{ marginTop: "30vh", zIndex: 10 }}>
       {introTransitions.map(
         ({ item, props: { innerHeight, ...rest }, key }) => (
           <animated.div className="transitions-item" key={key} style={rest}>
