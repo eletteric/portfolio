@@ -23,6 +23,9 @@ import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import TimelineSharpIcon from '@material-ui/icons/TimelineSharp';
 import BuildSharpIcon from '@material-ui/icons/BuildSharp';
 import Timeline from "./Timeline";
+import Hobbies from "./Hobbies";
+import AttachmentSharpIcon from '@material-ui/icons/AttachmentSharp';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -84,6 +87,7 @@ const About = (props) => {
           <Tab label="Soft Skills" icon={<PeopleSharpIcon />} {...a11yProps(2)} />
           <Tab label="Curriculum" icon={<TimelineSharpIcon />} {...a11yProps(3)} />
           <Tab label="Tools" icon={<BuildSharpIcon />} {...a11yProps(4)} />
+          <Tab label="Hobbies" icon={<AttachmentSharpIcon />} {...a11yProps(5)} />
         </Tabs>
       <TabPanel value={value} index={0}>
       <Portrait />
@@ -100,9 +104,10 @@ const About = (props) => {
         </Container>
       </TabPanel>
       <TabPanel value={value} index={4}>
-      <Container maxWidth="md">
       <Tools />
-        </Container>
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <Hobbies/>
       </TabPanel>
       </Container>
     </div>

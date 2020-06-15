@@ -99,7 +99,7 @@ const Canvas = () => {
     };
   }, []);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} style={{ width: "100%"}}/>;
 };
 
 export default Canvas;
