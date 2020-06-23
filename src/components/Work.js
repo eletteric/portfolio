@@ -3,7 +3,6 @@ import "../styles.css";
 import { WorkContext } from "../contexts/WorkContext";
 import { Grid } from "mauerwerk";
 import Container from "@material-ui/core/Container";
-import Hobbies from "./Hobbies";
 
 const Work = () => {
   const { works, addWork, setWorks } = useContext(WorkContext);
@@ -40,7 +39,6 @@ const Work = () => {
         )}
       </Grid>
       </Container>
-      <Hobbies />
     </div>
   );
 };

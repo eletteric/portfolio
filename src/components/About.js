@@ -23,7 +23,7 @@ import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import TimelineSharpIcon from '@material-ui/icons/TimelineSharp';
 import BuildSharpIcon from '@material-ui/icons/BuildSharp';
 import Timeline from "./Timeline";
-import Hobbies from "./Hobbies";
+import HobbiesWrapper from "./HobbiesWrapper";
 import AttachmentSharpIcon from '@material-ui/icons/AttachmentSharp';
 
 
@@ -77,6 +77,8 @@ const About = (props) => {
     setValue(newValue);
   };
 
+
+
   return (
     <div className="absoluteWrapper">
 <Container style={{paddingTop:'75px'}}>
@@ -107,7 +109,7 @@ const About = (props) => {
       <Tools />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Hobbies/>
+      <HobbiesWrapper />
       </TabPanel>
       </Container>
     </div>

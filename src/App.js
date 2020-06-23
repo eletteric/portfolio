@@ -5,6 +5,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Work from "./components/Work";
+import Projects from "./components/Projects";
 import About from "./components/About";
 import NotFound from "./components/NotFound";
 import Admin from "./components/Admin";
@@ -37,10 +38,10 @@ const App = () => {
             <Route exact path="/" render={(props) => <Home {...props} />} />
             <Route
               exact
-              path="/work"
+              path="/projects"
               render={(props) => (
                 <WorkContextProvider>
-                  <Work {...props} />
+                  <Projects {...props} />
                 </WorkContextProvider>
               )}
             />

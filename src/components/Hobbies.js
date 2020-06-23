@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import WordCloud from "react-d3-cloud";
 import randomColor from "randomcolor";
 import ReactWordcloud from "react-wordcloud";
+import Container from "@material-ui/core/Container";
 
 var wordData = [
   { text: "MTB", value: 5000 },
@@ -16,11 +17,11 @@ var wordData = [
 ];
 
 const options = {
-  colors: ["#ff00ff", "#00ffff", "#808080", "#d3d3d3"],
+  colors: ["#ff00ff", "#00ffff", "#808080", "#d3d3d3", "#ff00ff", "#00ffff"],
   enableTooltip: true,
   deterministic: false,
   fontFamily: "impact",
-  fontSizes: [5, 60],
+  fontSizes: [12, 60],
   fontStyle: "normal",
   fontWeight: "normal",
   padding: 1,
@@ -33,11 +34,9 @@ const options = {
 
 function Hobbies() {
   return (
-    <div>
-      <div style={{height: 320, width: "100%"}}>
+    <Container maxWidth="md" style={{height: 320, width: "100%", margin: '0px auto'}}>
         <ReactWordcloud options={options} words={wordData} />
-      </div>
-    </div>
+    </Container>
   );
 }
 

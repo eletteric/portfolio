@@ -106,8 +106,8 @@ const Navbar = (props) => {
               }}
             >
                     <MenuItem onClick={handleClose} dense>
-                    <NavLink exact activeClassName="activeItem" to="/work">
-                Work
+                    <NavLink exact activeClassName="activeItem" to="/projects">
+                Projects
               </NavLink>
                     </MenuItem>
                     </Grow>
