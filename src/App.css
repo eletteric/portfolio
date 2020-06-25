@@ -50,6 +50,13 @@ body {
   user-select: none;
   cursor: default;*/
 }
+h5{
+  font-weight: normal;
+  font-size: 1.25em;
+  color:grey;
+  margin:5px auto; padding:0;
+}
+
 #root {
   overflow-x: hidden; position:fixed
 }

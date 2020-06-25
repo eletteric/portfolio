@@ -57,13 +57,12 @@ const SoftSkills = () => {
 
 
   return (      
-        <animated.div style={aniProps}>
+        <animated.div style={{...aniProps, padding: '0px !important'}}>
       {transitions.map(({ item, key, props }) => (
 <animated.div key={key} style={props}>
   
   <Grid container spacing={0}>
-  
-  <Grid item xs={6}>
+  <Grid item xs={5}>
       <Typography
         variant="body1"
         style={{ lineHeight: "2em", color: "grey" }}
@@ -73,7 +72,7 @@ const SoftSkills = () => {
         {item.skill} &nbsp;
       </Typography>
     </Grid>
-    <Grid item xs={6}>
+    <Grid item xs={7}>
       <Box
         component="fieldset"
         mb={0}
@@ -95,7 +94,6 @@ const SoftSkills = () => {
       </Box>
     </Grid>
     </Grid>
-
     </animated.div>))}
     </animated.div>
   );

@@ -81,7 +81,7 @@ const About = (props) => {
 
   return (
     <div className="absoluteWrapper">
-<Container style={{paddingTop:'75px'}}>
+<Container style={{paddingTop:'60px'}}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="scrollable"
           scrollButtons="on">
           <Tab label="Skills" icon={<PersonSharpIcon />} {...a11yProps(0)} />

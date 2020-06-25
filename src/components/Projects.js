@@ -1,6 +1,10 @@
 import React, { useState, useCallback, useContext, useRef } from "react";
 import { WorkContext } from "../contexts/WorkContext";
 import Carousel, { Modal, ModalGateway } from "react-images";
+import Grid from "@material-ui/core/Grid";
+
+import WebDesign from './WebDesign'
+import LogoDesign from './LogoDesign'
 import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
 /* @jsx glam */
 import glam from 'glam'
@@ -31,98 +35,25 @@ function Projects() {
   })
 
   useChain([springRef,transRef]);
-const [viewerIsOpen, setViewerIsOpen] = useState(true);
+
+const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+const [selectedIndex, setSelectedIndex] = useState(0);
  
+const toggleLightbox = (index) => {
+  setLightboxIsOpen(true);
+  setSelectedIndex(index);
+}
+
   return (
     <div style={{paddingTop:'50px'}} className="absoluteWrapper">
-<animated.div style={aniProps}>
-      {transitions.map(({ item, key, props }, index) => (
-<animated.div key={key} style={{ ...props, display: "inline-block" }} >
-<img alt={item.caption} src={item.source} height="150px" width="auto"
-css={{
-      cursor: 'pointer',
-                  }}/>
-    </animated.div>))}
-    </animated.div>
-
-    {/* <ModalGateway>
-        {viewerIsOpen ? (
-          <Modal allowFullscreen={false} onClose={closeLightbox}
-          styles={{
-            blanket: base => ({
-              ...base,
-              backgroundColor: 'rgba(255,255,255,0.85)',
-            }),
-            dialog: base => ({
-              ...base,
-              maxWidth: 640,
-            }),
-          }}>
-            <Carousel 
-              views={works.map(x => ({
-                ...x,
-                srcset: x.srcSet,
-                caption: x.title
-              }))}
-                          styles={{
-              navigationPrev: base => ({
-                ...base,
-                color: '#666',
-              }),
-              navigationNext: base => ({
-                ...base,
-                color: '#666',
-              }),
-              footer: base => ({
-                ...base,
-                background: 'none !important',
-                color: '#666',
-                padding: 0,
-                paddingTop: 20,
-                position: 'static',
-
-                '& a': {
-                  color: 'black',
-                },
-              }),
-              header: base => ({
-                ...base,
-                background: 'none !important',
-                padding: 0,
-                paddingBottom: 10,
-                position: 'static',
-              }),
-              headerClose: base => ({
-                ...base,
-                color: '#666',
-
-                ':hover': { color: '#DE350B' },
-              }),
-              view: base => ({
-                ...base,
-                maxHeight: 480,
-                overflow: 'hidden',
-              }),
-            }}
-            />
-          </Modal>
-        ) : null}
-      </ModalGateway> */}
-
-
-      <ModalGateway>
-        {viewerIsOpen ? (
-          <Modal onClose={setViewerIsOpen(false)}>
-            <Carousel
-              views={works.map(x => ({
-                ...x,
-                srcset: x.srcSet,
-                caption: x.title
-              }))}
-            />
-          </Modal>
-        ) : null}
-      </ModalGateway>
+           <Grid container spacing={3}>
+        <Grid item xs={12}>
+      <WebDesign />
+      </Grid>
+      <Grid item xs={12}>
+      <LogoDesign/>
+      </Grid>
+      </Grid>
     </div>
   );
 }

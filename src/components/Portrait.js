@@ -91,7 +91,7 @@ const Portrait = (props) => {
 
   return (
     <React.Fragment>
-      <svg style={{ width: "250px", height: "250px" }} viewBox="0 0 160 160">
+      <svg style={{ width: "200px", height: "200px" }} viewBox="0 0 160 160">
         <defs>
           <pattern
             id="image"
@@ -166,7 +166,6 @@ const Portrait = (props) => {
       <Typography variant="caption">
         {myself[0].name.first} {myself[0].name.last}
       </Typography>
-      <br />
       <br />
       <br />
       <Container
