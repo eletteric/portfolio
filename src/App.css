@@ -173,3 +173,6 @@ p {
   .MuiTab-wrapper{font-size: 12px}
 
   .MuiTab-root{min-width: 140px;}
+
+  .MuiSnackbarContent-root {background-color: grey !important;}
+  .MuiSnackbarContent-action{padding:0!important; margin:0!important;}

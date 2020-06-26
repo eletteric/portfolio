@@ -31,15 +31,15 @@ const IntroText = (props) => {
     ref.current = [];
     set([]);
     ref.current.push(
-      setTimeout(() => set(["Designer", "Coder", "Creator"]), 250)
+      setTimeout(() => set(["Designer", "Coder", "Maker"]), 250)
     );
-    ref.current.push(setTimeout(() => set(["Designer", "Creator"]), 1000));
+    ref.current.push(setTimeout(() => set(["Designer", "Maker"]), 1000));
     ref.current.push(
-      setTimeout(() => set(["Designer", "Creator", "Coder"]), 3000)
+      setTimeout(() => set(["Designer", "Maker", "Coder"]), 3000)
     );
     ref.current.push(setTimeout(() => set(["Designer", "Coder"]), 5500));
     ref.current.push(
-      setTimeout(() => set(["Designer", "Creator", "Coder"]), 8500)
+      setTimeout(() => set(["Designer", "Maker", "Coder"]), 8500)
     );
 
     return () => ref.current.map(clearTimeout);
