@@ -15,16 +15,16 @@ import {
 /* @jsx glam */
 import glam from "glam";
 
-function WebDesign() {
+function Other() {
   const { works, addWork, setWorks } = useContext(WorkContext);
 
-  const filter = "webdesign";
-  const webdesigns = works.filter((item) => {
+  const filter = "other";
+  const other = works.filter((item) => {
     return item.categories.indexOf(filter) >= 0;
   });
 
   /* const webdesigns = works.filter(design => {design.index === 2});*/
-  console.log(webdesigns);
+  console.log(other);
   const springRef = useRef();
   const aniProps = useSpring({
     ref: springRef,
@@ -34,7 +34,7 @@ function WebDesign() {
   });
 
   const transRef = useRef();
-  const transitions = useTransition(webdesigns, (item) => item.title, {
+  const transitions = useTransition(other, (item) => item.title, {
     ref: transRef,
     unique: true,
     trail: 800 / works.length,
@@ -47,11 +47,11 @@ function WebDesign() {
   useChain([springRef, transRef]);
 
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
-  const [selectedIndexWeb, setSelectedIndexWeb] = useState(0);
+  const [selectedIndexOther, setSelectedIndexOther] = useState(0);
 
   const onImageChange = (index) => {
     console.log(index);
-    setSelectedIndexWeb(index);
+    setSelectedIndexOther(index);
   };
 
   return (
@@ -74,7 +74,7 @@ function WebDesign() {
                 height="75px"
                 width="auto"
                 onClick={() => {
-                  setSelectedIndexWeb(index);
+                  setSelectedIndexOther(index);
                   setLightboxIsOpen(true);
                 }}
               />
@@ -89,7 +89,7 @@ function WebDesign() {
             allowFullscreen={false}
             onClose={() => {
               setLightboxIsOpen(false);
-              console.log(selectedIndexWeb);
+              console.log(selectedIndexOther);
             }}
             styles={{
               blanket: (base) => ({
@@ -103,9 +103,9 @@ function WebDesign() {
             }}
           >
             <Carousel
-              currentIndex={selectedIndexWeb}
+              currentIndex={selectedIndexOther}
               trackProps={{ onViewChange: (index) => onImageChange(index) }}
-              views={webdesigns.map((x) => ({
+              views={other.map((x) => ({
                 ...x,
                 srcset: x.srcSet,
                 caption: x.title,
@@ -171,4 +171,4 @@ function WebDesign() {
     </Container>
   );
 }
-export default WebDesign;
+export default Other;

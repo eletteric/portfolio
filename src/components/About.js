@@ -88,7 +88,7 @@ const About = (props) => {
           <Tab label="Languages" icon={<LanguageSharpIcon />} {...a11yProps(1)} />
           <Tab label="Soft Skills" icon={<PeopleSharpIcon />} {...a11yProps(2)} />
           <Tab label="Curriculum" icon={<TimelineSharpIcon />} {...a11yProps(3)} />
-          <Tab label="Tools" icon={<BuildSharpIcon />} {...a11yProps(4)} />
+          <Tab label="Toolbox" icon={<BuildSharpIcon />} {...a11yProps(4)} />
           <Tab label="Hobbies" icon={<AttachmentSharpIcon />} {...a11yProps(5)} />
         </Tabs>
       <TabPanel value={value} index={0}>
@@ -97,7 +97,7 @@ const About = (props) => {
       <TabPanel value={value} index={1} style={{paddingTop:'20px'}}>
       <LanguageGraph />
       </TabPanel>
-      <TabPanel value={value} index={2} style={{paddingTop:'20px'}}>
+      <TabPanel value={value} index={2} style={{paddingTop:'50px'}}>
       <SoftSkills />
       </TabPanel>
       <TabPanel value={value} index={3}>

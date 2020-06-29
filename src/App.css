@@ -177,3 +177,7 @@ p {
   .MuiSnackbarContent-root {background-color: grey !important;}
   .MuiSnackbarContent-action{padding:0!important; margin:0!important;}
   .MuiSnackbarContent-root{flex-grow:0 !important;}
+  
+  .MuiBox-root{padding:0px !important; margin: 0px !important;}
+  .MuiExpansionPanelSummary-root{min-height: 32px !important;}
+  .MuiExpansionPanelSummary-content.Mui-expanded{margin: 0px !important;}

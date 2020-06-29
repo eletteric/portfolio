@@ -55,7 +55,7 @@ const LanguageGraph = (props) => {
         version="1.1"
         width="100%"
         height="180px"
-        viewBox="-50 0 140 55"
+        viewBox="-35 0 135 55"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
       >
@@ -164,8 +164,8 @@ const LanguageGraph = (props) => {
       <br/>
       <div
             style={{
-              fontSize: "0.8em",
-              borderLeft: "15px solid cyan",
+              fontSize: "0.9em",
+              borderLeft: "18px solid cyan",
               width: "100px",
               margin: "5px auto",
               display: "inline-block",
@@ -177,8 +177,8 @@ const LanguageGraph = (props) => {
           </div>
           <div
             style={{
-              fontSize: "0.8em",
-              borderLeft: "15px solid grey",
+              fontSize: "0.9em",
+              borderLeft: "18px solid grey",
               width: "auto",
               margin: "5px auto",
               display: "inline-block",

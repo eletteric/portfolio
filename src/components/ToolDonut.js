@@ -17,12 +17,15 @@ const ToolDonut = (props) => {
   const categColor = props.categColor;
   const toolName = props.toolName;
 
+  const resetAnimation = props.resetAnimation;
 
 
   const propsStroke = useSpring({
     value: setStrokeDashArrayInPercent(percent),
     from: { value: 105 },
     config: { duration: 500 },
+    reset: {resetAnimation},
+    reverse:false
   });
   const propsNumber = useSpring({
     number: Math.abs(percent),

@@ -91,7 +91,7 @@ const Portrait = (props) => {
 
   return (
     <React.Fragment>
-      <svg style={{ width: "200px", height: "200px" }} viewBox="0 0 160 160">
+      <svg style={{ width: "40vh", height: "40vh", marginTop: "20px" }} viewBox="0 0 160 160">
         <defs>
           <pattern
             id="image"
@@ -167,13 +167,13 @@ const Portrait = (props) => {
         {myself[0].name.first} {myself[0].name.last}
       </Typography>
       <br />
-      <br />
       <Container
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           whiteSpace: "wrap",
+          marginTop:"30px"
         }}
       >
         <div style={{ width: "100px" }}>

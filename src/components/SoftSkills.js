@@ -62,7 +62,8 @@ const SoftSkills = () => {
 <animated.div key={key} style={props}>
   
   <Grid container spacing={0}>
-  <Grid item xs={5}>
+  <Grid item xs={5} justify="flex-end" style={{ textAlign: "right" }}
+>
       <Typography
         variant="body1"
         style={{ lineHeight: "2em", color: "grey" }}

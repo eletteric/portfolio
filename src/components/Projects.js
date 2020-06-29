@@ -3,57 +3,110 @@ import { WorkContext } from "../contexts/WorkContext";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import Grid from "@material-ui/core/Grid";
 
-import WebDesign from './WebDesign'
-import LogoDesign from './LogoDesign'
-import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
+import WebDesign from "./WebDesign";
+import LogoDesign from "./LogoDesign";
+import Other from "./Other";
+import PropTypes from "prop-types";
+import Box from "@material-ui/core/Box";
+
+import Container from "@material-ui/core/Container";
+
+import CodeSharpIcon from "@material-ui/icons/CodeSharp";
+import PaletteSharpIcon from "@material-ui/icons/PaletteSharp";
+import SquareFootSharpIcon from "@material-ui/icons/SquareFootSharp";
+
+import {
+  useTransition,
+  useSpring,
+  useChain,
+  config,
+  animated,
+} from "react-spring";
 /* @jsx glam */
-import glam from 'glam'
+import glam from "glam";
+import { makeStyles } from "@material-ui/core/styles";
 
-function Projects() {
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import WebIcon from '@material-ui/icons/Web';
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import GestureIcon from '@material-ui/icons/Gesture';
+import BusinessIcon from '@material-ui/icons/Business';
 
-  const { works, addWork, setWorks } = useContext(WorkContext);
-  
-  const springRef = useRef()
-  const aniProps = useSpring({
-    ref: springRef,
-    delay: 1,
-    config: config.stiff,
-    from: { opacity: 0, size: '20%',},
-    to: { opacity: 1, size: '100%',}
-  })
-
-  const transRef = useRef()
-  const transitions = useTransition(works, item => item.title, {
-    ref: transRef,
-    unique: true,
-    trail: 1000 / works.length,
-    delay: 1,
-    config:{duration: 200},
-    from: { opacity: 0, transform: 'scale(0)' },
-    enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' }
-  })
-
-  useChain([springRef,transRef]);
-
-const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
-const [selectedIndex, setSelectedIndex] = useState(0);
- 
-const toggleLightbox = (index) => {
-  setLightboxIsOpen(true);
-  setSelectedIndex(index);
-}
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <div style={{paddingTop:'50px'}} className="absoluteWrapper">
-           <Grid container spacing={3}>
-        <Grid item xs={12}>
-      <WebDesign />
-      </Grid>
-      <Grid item xs={12}>
-      <LogoDesign/>
-      </Grid>
-      </Grid>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={3}>{children}</Box>}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  big: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+  },
+}));
+
+function Projects(props) {
+  const { works, addWork, setWorks } = useContext(WorkContext);
+
+  const classes = useStyles();
+
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className="absoluteWrapper">
+      <Container style={{ padding: "0px", paddingTop: "60px"}}>
+        <Tabs
+          value={value}
+          centered
+          onChange={handleChange}
+          aria-label="simple tabs example"
+          variant="scrollable"
+          scrollButtons="on"
+        >
+          <Tab
+            label="Webdesign"
+            {...a11yProps(0)}
+          />
+          <Tab label="Coding" {...a11yProps(1)} />
+          <Tab label="Other" {...a11yProps(2)} />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <WebDesign />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <LogoDesign />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Other />
+        </TabPanel>
+      </Container>
     </div>
   );
 }
