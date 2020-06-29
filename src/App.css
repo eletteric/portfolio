@@ -176,3 +176,4 @@ p {
 
   .MuiSnackbarContent-root {background-color: grey !important;}
   .MuiSnackbarContent-action{padding:0!important; margin:0!important;}
+  .MuiSnackbarContent-root{flex-grow:0 !important;}
