@@ -74,11 +74,14 @@ h5{
   color: black;
   padding-top: 5px;
   padding-bottom: 5px;
-  display: inline-block !important;
+ /* display: block !important;*/
 }
 .MuiListItem-root a.activeItem {
   text-decoration: underline;
   color: black;
+}
+.MuiListItem-root{
+  justify-content: center !important;
 }
 
 .absoluteWrapper {
@@ -100,7 +103,7 @@ h5{
   height: 60px;
   width: 100%;
   z-index: 1;
-  text-align:right
+  text-align:center
 }
 
 canvas {
@@ -164,10 +167,10 @@ p {
 
 
   #menu-list-grow li{
-    display: inline-flex !important;
+    /*display: inline-flex !important;*/
   }
   #menu-list-grow {
-    padding-right: 10px !important;
+   /* padding-right: 10px !important;*/
   }
 
   .MuiTab-wrapper{font-size: 12px}

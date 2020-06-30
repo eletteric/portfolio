@@ -89,7 +89,7 @@ const miscellaneousList = tools.map((tool) => {
 <Container maxWidth="md" style={{paddingTop: "20px"}}>
 
 <div className={classes.root}>
-      <ExpansionPanel defaultExpanded="true" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <ExpansionPanel defaultExpanded={true} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"

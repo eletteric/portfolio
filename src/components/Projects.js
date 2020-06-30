@@ -84,7 +84,6 @@ function Projects(props) {
       <Container style={{ padding: "0px", paddingTop: "60px"}}>
         <Tabs
           value={value}
-          centered
           onChange={handleChange}
           aria-label="simple tabs example"
           variant="scrollable"
